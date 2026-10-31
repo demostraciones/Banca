@@ -1,0 +1,25 @@
+/* tipografía real, ruta absoluta */
+@font-face{font-family:"Encode Sans normal";src:url("https://www.bancoprovincia.bancainternet.com.ar/spa/assets/EncodeSans-BtQECWha.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Encode Sans 500";src:url("https://www.bancoprovincia.bancainternet.com.ar/spa/assets/EncodeSans-BtQECWha.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:"Encode Sans 600";src:url("https://www.bancoprovincia.bancainternet.com.ar/spa/assets/EncodeSans-BtQECWha.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Encode Sans 700";src:url("https://www.bancoprovincia.bancainternet.com.ar/spa/assets/EncodeSans-BtQECWha.ttf") format("truetype");font-weight:700;font-display:swap}
+
+/* geometría del header y logo */
+header.login-mobile{padding-top:10px!important}
+.logoBapro.logoBaproLogin{height:34px!important;margin-top:0!important;padding-bottom:12px}
+.layout.header img.logo-web{height:30px!important;width:auto!important}
+.login-content-mobile{border-top-left-radius:1.25rem!important;border-top-right-radius:1.25rem!important}
+
+/* campo con error: tiene que ganarle a .form-control */
+.form-control.mal{border:.063rem solid #d42f1a!important;background-color:#d42f1a26!important}
+
+/* mensaje de error */
+#err{color:#d42f1a;font-size:.875rem;line-height:1.313rem;margin:.5rem 0 0}
+
+/* link de saltear token */
+.saltear{display:block;text-align:center;margin-top:1rem;font-size:.875rem;color:#007a2b;text-decoration:underline;cursor:pointer}
+
+/* overlay del spinner */
+#spin{position:fixed;inset:0;background:#fffffff2;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+#spin.oculto{display:none}
+#spin .txt{font-family:"Encode Sans 600";font-size:1rem;color:#3c3c3b}
